@@ -7,6 +7,9 @@ import uk.fergcb.rogue.Text;
 import uk.fergcb.rogue.entities.items.Item;
 import uk.fergcb.rogue.map.rooms.Room;
 
+import java.util.Arrays;
+import java.util.List;
+
 public abstract class Actor extends Entity implements Interactable {
     public final Inventory inventory = new Inventory();
 
@@ -18,8 +21,10 @@ public abstract class Actor extends Entity implements Interactable {
 
     @Override
     public boolean canInteract(Interaction action) {
-        return action.type() == InteractionType.DROP
-                || action.type() == InteractionType.PICK_UP;
+        List<InteractionType> allowed = Arrays.asList(
+                InteractionType.DROP, InteractionType.PICK_UP, InteractionType.GO, InteractionType.LOOK
+        );
+        return allowed.contains(action.type()) && action.target() == this;
     }
 
     @Override

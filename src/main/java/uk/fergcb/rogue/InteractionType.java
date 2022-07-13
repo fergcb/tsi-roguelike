@@ -1,6 +1,7 @@
 package uk.fergcb.rogue;
 
 public enum InteractionType {
+    FAIL,
     GO,
     SEARCH,
     LOOK,

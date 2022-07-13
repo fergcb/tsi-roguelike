@@ -1,38 +1,56 @@
-package uk.fergcb.rogue;
+package uk.fergcb.rogue.parser;
 
+import uk.fergcb.rogue.Interaction;
+import uk.fergcb.rogue.InteractionType;
+import uk.fergcb.rogue.Text;
 import uk.fergcb.rogue.entities.Container;
 import uk.fergcb.rogue.entities.Entity;
 import uk.fergcb.rogue.entities.Interactable;
 import uk.fergcb.rogue.entities.Player;
 import uk.fergcb.rogue.entities.items.Item;
 import uk.fergcb.rogue.map.rooms.Room;
+import uk.fergcb.rogue.parser.combinators.Some;
+import uk.fergcb.rogue.parser.commands.*;
+import uk.fergcb.rogue.parser.tokens.Word;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 
-public class InputParser {
+public class InputScanner {
 
     private static final List<String> validDirs = Arrays.asList("NORTH", "EAST", "SOUTH", "WEST");
 
+    private static final List<Command> commands = Arrays.asList(
+            new GoCommand(),
+            new TakeCommand(),
+            new PickUpCommand(),
+            new SearchCommand(),
+            new DropCommand(),
+            new LookCommand()
+    );
+
     private final Scanner scanner = new Scanner(System.in);
 
-    public Interaction nextInteraction(Room room, Player player) {
-        Interaction interaction;
-        String line;
-        do {
-            System.out.print(" > ");
-            line = scanner.nextLine()
-                    .trim()
-                    .toUpperCase(Locale.ROOT);
-        } while ((interaction = parseInteraction(line, room, player)) == null);
-
-        return interaction;
+    public Interaction nextInteraction(Player player) {
+        System.out.print(" > ");
+        String line = scanner.nextLine().trim();
+        return parseInteraction(line, player);
     }
 
-    private Interaction parseInteraction(String line, Room room, Player player) {
-        String[] parts = line.split("\\s+");
+    private Interaction parseInteraction(String line, Player player) {
+        Optional<Interaction> result = Optional.empty();
+        for (Command command : commands) {
+            result = command.match(line, player);
+            if (result.isPresent()) break;
+        }
+
+        final Interaction fail = Interaction.fail("I don't know how to " + Text.red(line));
+
+        return result.orElse(fail);
+    }
+
+    private Interaction _parseInteraction(String line, Room room, Player player) {
+        Parser<List<String>> parser = new Some<>(new Word());
+        String[] parts = parser.parse(line).value().toArray(new String[0]);
         String command = parts[0];
         String[] args = Arrays.copyOfRange(parts, 1, parts.length);
         switch(command) {
@@ -48,7 +66,7 @@ public class InputParser {
                     return null;
                 }
 
-                return new Interaction(InteractionType.GO, player, null, dir);
+                return new Interaction(InteractionType.GO, player, player, dir);
             }
             case "SEARCH" -> {
                 if (args.length > 1) {

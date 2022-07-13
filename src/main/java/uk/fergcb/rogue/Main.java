@@ -1,6 +1,5 @@
 package uk.fergcb.rogue;
 
-import uk.fergcb.rogue.entities.Actor;
 import uk.fergcb.rogue.entities.Interactable;
 import uk.fergcb.rogue.entities.Player;
 import uk.fergcb.rogue.map.rooms.EmptyRoom;
@@ -27,11 +26,11 @@ public class Main {
         boolean shouldDraw = true;
         while (!gameOver) {
             if (shouldDraw) {
-                System.out.print(room.draw(player));
-                System.out.print(room.describe());
+                System.out.print(player.currentRoom.draw(player));
+                System.out.print(player.currentRoom.describe());
             }
 
-            Interaction action = input.nextInteraction(room, player);
+            Interaction action = input.nextInteraction(player.currentRoom, player);
             shouldDraw = handleInteraction(action);
         }
     }

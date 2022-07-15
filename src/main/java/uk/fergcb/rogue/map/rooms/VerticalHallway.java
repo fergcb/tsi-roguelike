@@ -8,7 +8,7 @@ public class VerticalHallway extends Room {
 
     @Override
     public String getName() {
-        return "a stone hallway";
+        return "stone hallway";
     }
 
     @Override

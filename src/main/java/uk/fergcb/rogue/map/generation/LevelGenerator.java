@@ -6,9 +6,6 @@ import uk.fergcb.rogue.map.rooms.*;
 
 import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Stack;
 
 /**
  * The brain of the Level generation operation
@@ -36,16 +33,20 @@ public class LevelGenerator {
 
         // Empty rooms can neighbour other rooms, and hallways
         index.addRule(EmptyRoom.class, EmptyRoom.class, 20, Direction.values());
-        index.addRule(EmptyRoom.class, HorizontalHallway.class, 30, Direction.EAST, Direction.WEST);
-        index.addRule(EmptyRoom.class, VerticalHallway.class, 30, Direction.NORTH, Direction.SOUTH);
+        index.addRule(EmptyRoom.class, HorizontalHallway.class, 30, Direction.EAST, Direction.WEST)
+                .when((point, state) -> point.x > 0 && point.x < state.width - 1);
+        index.addRule(EmptyRoom.class, VerticalHallway.class, 30, Direction.NORTH, Direction.SOUTH)
+                .when((point, state) -> point.y > 0 && point.y < state.height - 1);
         index.addRule(EmptyRoom.class, null, 40, Direction.values());
 
         // Horizontal hallways may only join other rooms to the east and west
-        index.addRule(HorizontalHallway.class, HorizontalHallway.class, 30, Direction.EAST, Direction.WEST);
+        index.addRule(HorizontalHallway.class, HorizontalHallway.class, 30, Direction.EAST, Direction.WEST)
+                .when((point, state) -> point.x > 0 && point.x < state.width - 1);
         index.addRule(HorizontalHallway.class, EmptyRoom.class, 70, Direction.EAST, Direction.WEST);
 
         // Vertical hallways may only join other rooms to the north and south
-        index.addRule(VerticalHallway.class, VerticalHallway.class, 30, Direction.NORTH, Direction.SOUTH);
+        index.addRule(VerticalHallway.class, VerticalHallway.class, 30, Direction.NORTH, Direction.SOUTH)
+                .when((point, state) -> point.y > 0 && point.y < state.height - 1);
         index.addRule(VerticalHallway.class, EmptyRoom.class, 70, Direction.NORTH, Direction.SOUTH);
     }
 
@@ -67,8 +68,7 @@ public class LevelGenerator {
      * @return The generated Level
      */
     public Level generateLevel() {
-        final Map<Point, Room> generated = new HashMap<>();
-        final Stack<Point> toExpand = new Stack<>();
+        final GeneratorState state = new GeneratorState(width, height);
 
         // Place the starter room in the middle of the map
         final int sx = width / 2;
@@ -77,12 +77,12 @@ public class LevelGenerator {
         final Point starterPoint = new Point(sx, sy);
         final Room starterRoom = new StarterRoom(sx, sy);
 
-        generated.put(starterPoint, starterRoom);
-        toExpand.push(starterPoint);
+        state.generated.put(starterPoint, starterRoom);
+        state.toExpand.push(starterPoint);
 
-        while (toExpand.size() > 0) {
-            Point currentPoint = toExpand.pop();
-            expand(currentPoint, generated, toExpand);
+        while (state.isExpanding()) {
+            Point currentPoint = state.toExpand.pop();
+            expand(currentPoint, state);
         }
 
         return new Level(width, height, starterRoom);
@@ -91,36 +91,35 @@ public class LevelGenerator {
     /**
      * Find the room at a given point and choose its neighbours. Mark the neighbours to be expanded.
      * @param currentPoint The point to expand
-     * @param generated The set of generated rooms
-     * @param toExpand The stack of points waiting to be expanded
+     * @param state The current state of the generator
      */
-    private void expand(Point currentPoint,  Map<Point, Room> generated, Stack<Point> toExpand) {
-        Room currentRoom = generated.get(currentPoint);
+    private void expand(Point currentPoint, GeneratorState state) {
+        Room currentRoom = state.generated.get(currentPoint);
 
         for (Direction direction : Direction.values()) {
             Point vector = direction.vector;
             Point nextPoint = new Point(currentPoint.x + vector.x, currentPoint.y + vector.y);
             if (isOutOfBounds(nextPoint)) continue;
 
-            // If this direction already has the desired room, just attach to it
-            if (generated.containsKey(nextPoint)) {
-                Room existingNeighbour = generated.get(nextPoint);
-                if (index.isAllowed(currentRoom.getClass(), existingNeighbour.getClass(), direction)) {
+            // If this direction already has valid target room, just attach to it
+            if (state.generated.containsKey(nextPoint)) {
+                Room existingNeighbour = state.generated.get(nextPoint);
+                if (index.isAllowed(currentRoom.getClass(), existingNeighbour.getClass(), direction, nextPoint, state)) {
                     currentRoom.attach(direction, existingNeighbour);
                 }
                 continue;
             }
 
             // Generate the new room
-            Room nextRoom = createNextRoom(currentRoom, direction, nextPoint);
+            Room nextRoom = createNextRoom(currentRoom, direction, nextPoint, state);
             if (nextRoom == null) continue;
             else currentRoom.attach(direction, nextRoom);
 
             // Attach the new room to the current one
             // Mark this point as having a generated room
-            generated.put(nextPoint, nextRoom);
+            state.generated.put(nextPoint, nextRoom);
             // Remember to come back and explore the new room's neighbours
-            toExpand.push(nextPoint);
+            state.toExpand.push(nextPoint);
         }
     }
 
@@ -129,10 +128,11 @@ public class LevelGenerator {
      * @param currentRoom The room being transitioned from
      * @param direction The outbound direction of travel
      * @param nextPoint The coordinates of the new room
+     * @param state The current state of the generator
      * @return the new Room, or null if no room should be placed here
      */
-    private Room createNextRoom(Room currentRoom, Direction direction, Point nextPoint) {
-        Class<? extends Room> nextRoomClass = index.chooseNext(currentRoom.getClass(), direction);
+    private Room createNextRoom(Room currentRoom, Direction direction, Point nextPoint, GeneratorState state) {
+        Class<? extends Room> nextRoomClass = index.chooseNext(currentRoom.getClass(), direction, nextPoint, state);
         if (nextRoomClass == null) return null;
         try {
             return nextRoomClass.getConstructor(int.class, int.class).newInstance(nextPoint.x, nextPoint.y);

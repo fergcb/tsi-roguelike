@@ -3,6 +3,8 @@ package uk.fergcb.rogue.map.generation;
 import uk.fergcb.rogue.map.Direction;
 import uk.fergcb.rogue.map.rooms.Room;
 
+import java.awt.*;
+import java.util.List;
 import java.util.*;
 
 /**
@@ -11,8 +13,6 @@ import java.util.*;
  * Keeps a weighted list of outgoing room possibilities for each type of room and in each direction
  */
 public class Index {
-
-    private record Link (Class<? extends Room> roomClass, int weight) {}
 
     private final Map<Class<? extends Room>, Map<Direction, List<Link>>> rules;
 
@@ -28,12 +28,13 @@ public class Index {
      * @param weight The likelihood of this link being chosen
      * @param directions The directions in which this transition is allowed
      */
-    public void addRule(Class<? extends Room> origin, Class<? extends Room> target, int weight, Direction... directions) {
+    public LinkCollection addRule(Class<? extends Room> origin, Class<? extends Room> target, int weight, Direction... directions) {
         if (!rules.containsKey(origin)) {
             rules.put(origin, new HashMap<>());
         }
 
         Map<Direction, List<Link>> outboundRules = rules.get(origin);
+        LinkCollection createdLinks = new LinkCollection();
 
         for (Direction direction : directions) {
             if(!outboundRules.containsKey(direction)) {
@@ -42,8 +43,12 @@ public class Index {
 
             List<Link> allowedLinks = outboundRules.get(direction);
 
-            allowedLinks.add(new Link(target, weight));
+            Link newLink = new Link(target, weight);
+            createdLinks.add(newLink);
+            allowedLinks.add(newLink);
         }
+
+        return createdLinks;
     }
 
     /**
@@ -51,33 +56,44 @@ public class Index {
      * @param origin The room type to transition from
      * @param target The room type to transition into
      * @param direction The direction of outbound travel
+     * @param targetPoint The location of the room to transition to
+     * @param state The current state of the generator
      * @return True if the transition is allowed, otherwise false
      */
-    public boolean isAllowed(Class<? extends Room> origin, Class<? extends Room> target, Direction direction) {
+    public boolean isAllowed(Class<? extends Room> origin, Class<? extends Room> target, Direction direction, Point targetPoint, GeneratorState state) {
         if (!rules.containsKey(origin)) return false;
         Map<Direction, List<Link>> outboundRules = rules.get(origin);
         if (!outboundRules.containsKey(direction)) return false;
         List<Link> allowedLinks = outboundRules.get(direction);
         return allowedLinks
                 .stream()
-                .filter(link -> link.roomClass() != null)
-                .anyMatch(link -> link.roomClass().equals(target));
+                .filter(link -> link.validator.apply(targetPoint, state))
+                .filter(link -> link.roomClass != null)
+                .anyMatch(link -> link.roomClass.equals(target));
     }
 
     /**
      * Choose a target room type by weighted selection from the list of outbound links for a given origin room type
      * @param origin The room type being transitioned from
      * @param direction The direction of outbound travel
+     * @param targetPoint The location of the room to transition to
+     * @param state The current state of the generator
      * @return The class of the chosen Room type.
      */
-    public Class<? extends Room> chooseNext(Class<? extends Room> origin, Direction direction) {
+    public Class<? extends Room> chooseNext(Class<? extends Room> origin, Direction direction, Point targetPoint, GeneratorState state) {
         Map<Direction, List<Link>> outboundRules = rules.get(origin);
         List<Link> allowedLinks = outboundRules.get(direction);
         if (allowedLinks == null) return null;
 
+        allowedLinks.retainAll(allowedLinks
+                .stream()
+                .filter(link -> link.validator.apply(targetPoint, state))
+                .toList()
+        );
+
         int sumWeights = allowedLinks
                 .stream()
-                .mapToInt(Link::weight)
+                .mapToInt(link -> link.weight)
                 .sum();
 
         Random random = new Random();
@@ -85,14 +101,15 @@ public class Index {
         int pin = random.nextInt(sumWeights);
 
         // Climb up the pile of links until you find the pin
-        Class<? extends Room> choice;
+        Link choice;
         int i = 0;
         do {
-            final Link link = allowedLinks.get(i++);
-            choice = link.roomClass();
-            pin -= link.weight;
+            choice = allowedLinks.get(i++);
+            pin -= choice.weight;
         } while (pin >= 0);
 
-        return choice;
+        if (!choice.validator.apply(targetPoint, state)) return null;
+
+        return choice.roomClass;
     }
 }

@@ -13,7 +13,4 @@ public class HorizontalHallway extends Room {
 
     @Override
     public void init() {}
-
-    @Override
-    public void tick() {}
 }

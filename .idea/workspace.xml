@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4fe50d8b-c0e5-4f38-9b12-ff34f384d4b1" name="Changes" comment="Add room iterator for levels">
+    <list default="true" id="4fe50d8b-c0e5-4f38-9b12-ff34f384d4b1" name="Changes" comment="Add room stream for levels">
       <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/Level.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/generation/LevelPreview.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/generation/LevelPreview.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/rooms/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/rooms/Room.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,7 +60,7 @@
       <recent name="uk.fergcb.rogue" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.uk.fergcb.rogue.map.generation.LevelPreview">
+  <component name="RunManager" selected="Application.uk.fergcb.rogue.Main">
     <configuration name="uk.fergcb.rogue.Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="uk.fergcb.rogue.Main" />
       <module name="Roguelike" />
@@ -90,8 +89,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.uk.fergcb.rogue.map.generation.LevelPreview" />
         <item itemvalue="Application.uk.fergcb.rogue.Main" />
+        <item itemvalue="Application.uk.fergcb.rogue.map.generation.LevelPreview" />
       </list>
     </recent_temporary>
   </component>
@@ -160,7 +159,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657885982304</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Add room stream for levels">
+      <created>1657888624791</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1657888624791</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -182,7 +188,8 @@
     <MESSAGE value="Add level generation&#10;&#10;As a byproduct, the way directions are handled has been improved." />
     <MESSAGE value="Allow links to be validated with additional logic" />
     <MESSAGE value="Add room iterator for levels" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add room iterator for levels" />
+    <MESSAGE value="Add room stream for levels" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add room stream for levels" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

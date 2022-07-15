@@ -22,9 +22,4 @@ public class StarterRoom extends Room {
         chest.inventory.add(new Wand());
         this.entities.add(chest);
     }
-
-    @Override
-    public void tick() {
-
-    }
 }

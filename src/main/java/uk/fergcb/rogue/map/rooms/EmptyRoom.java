@@ -12,7 +12,4 @@ public class EmptyRoom extends Room {
 
     @Override
     public void init() {}
-
-    @Override
-    public void tick() {}
 }

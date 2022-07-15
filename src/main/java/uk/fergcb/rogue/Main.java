@@ -32,6 +32,8 @@ public class Main {
 
             Interaction action = input.nextInteraction(player);
             shouldDraw = handleInteraction(action);
+
+            level.roomStream().forEachOrdered(Room::tick);
         }
     }
 

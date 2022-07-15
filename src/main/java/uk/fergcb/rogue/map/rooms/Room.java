@@ -146,6 +146,10 @@ public abstract class Room {
         return sb.toString();
     }
 
+    public void tick() {
+        entities.forEach(Entity::tick);
+    }
+
     private List<String> exitStrings() {
         return exits.keySet()
                 .stream()
@@ -156,6 +160,4 @@ public abstract class Room {
     public abstract String getName();
 
     public abstract void init();
-
-    public abstract void tick();
 }

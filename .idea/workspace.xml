@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4fe50d8b-c0e5-4f38-9b12-ff34f384d4b1" name="Changes" comment="Allow links to be validated with additional logic">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="4fe50d8b-c0e5-4f38-9b12-ff34f384d4b1" name="Changes" comment="Add room iterator for levels">
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/Level.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/generation/LevelPreview.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/generation/LevelPreview.java" afterDir="false" />
     </list>
@@ -153,7 +153,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657884284508</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="Add room iterator for levels">
+      <created>1657885982304</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1657885982304</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -174,7 +181,8 @@
     <MESSAGE value="Add combinatory parsing system for interactions" />
     <MESSAGE value="Add level generation&#10;&#10;As a byproduct, the way directions are handled has been improved." />
     <MESSAGE value="Allow links to be validated with additional logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="Allow links to be validated with additional logic" />
+    <MESSAGE value="Add room iterator for levels" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add room iterator for levels" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

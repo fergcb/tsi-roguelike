@@ -4,9 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4fe50d8b-c0e5-4f38-9b12-ff34f384d4b1" name="Changes" comment="Add room stream for levels">
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/rooms/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/rooms/Room.java" afterDir="false" />
+    <list default="true" id="4fe50d8b-c0e5-4f38-9b12-ff34f384d4b1" name="Changes" comment="Fix: duplicate article in hallway names">
+      <change afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/Crate.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/items/Gem.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/items/GemQuality.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/items/GemType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/items/Potion.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/items/PotionColor.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/rooms/StorageRoom.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/generation/LevelGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/generation/LevelGenerator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +28,8 @@
       <list>
         <option value="Interface" />
         <option value="Record" />
-        <option value="Enum" />
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -54,9 +61,10 @@
       <recent name="uk.fergcb.rogue.map" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="uk.fergcb.rogue.entities.items" />
+      <recent name="uk.fergcb.rogue.entities" />
       <recent name="uk.fergcb.rogue.map.rooms" />
       <recent name="uk.fergcb.rogue.parser.commands" />
-      <recent name="uk.fergcb.rogue.entities.items" />
       <recent name="uk.fergcb.rogue" />
     </key>
   </component>
@@ -166,7 +174,35 @@
       <option name="project" value="LOCAL" />
       <updated>1657888624791</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Propagate game ticks">
+      <created>1657889746357</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1657889746357</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Fix: error thrown choosing adjacent room when there are no rules">
+      <created>1657895827299</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1657895827299</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Improve entity current room tracking, Room::addEntity">
+      <created>1657896164409</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1657896164409</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Fix: duplicate article in hallway names">
+      <created>1657896402096</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1657896402096</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -189,7 +225,11 @@
     <MESSAGE value="Allow links to be validated with additional logic" />
     <MESSAGE value="Add room iterator for levels" />
     <MESSAGE value="Add room stream for levels" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add room stream for levels" />
+    <MESSAGE value="Propagate game ticks" />
+    <MESSAGE value="Fix: error thrown choosing adjacent room when there are no rules" />
+    <MESSAGE value="Improve entity current room tracking, Room::addEntity" />
+    <MESSAGE value="Fix: duplicate article in hallway names" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix: duplicate article in hallway names" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

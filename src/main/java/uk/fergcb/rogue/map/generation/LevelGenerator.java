@@ -33,6 +33,7 @@ public class LevelGenerator {
 
         // Empty rooms can neighbour other rooms, and hallways
         index.addRule(EmptyRoom.class, EmptyRoom.class, 20, Direction.values());
+        index.addRule(EmptyRoom.class, StorageRoom.class, 5, Direction.values());
         index.addRule(EmptyRoom.class, HorizontalHallway.class, 30, Direction.EAST, Direction.WEST)
                 .when((point, state) -> point.x > 0 && point.x < state.width - 1);
         index.addRule(EmptyRoom.class, VerticalHallway.class, 30, Direction.NORTH, Direction.SOUTH)
@@ -42,12 +43,14 @@ public class LevelGenerator {
         // Horizontal hallways may only join other rooms to the east and west
         index.addRule(HorizontalHallway.class, HorizontalHallway.class, 30, Direction.EAST, Direction.WEST)
                 .when((point, state) -> point.x > 0 && point.x < state.width - 1);
-        index.addRule(HorizontalHallway.class, EmptyRoom.class, 70, Direction.EAST, Direction.WEST);
+        index.addRule(HorizontalHallway.class, EmptyRoom.class, 60, Direction.EAST, Direction.WEST);
+        index.addRule(HorizontalHallway.class, StorageRoom.class, 10, Direction.EAST, Direction.WEST);
 
         // Vertical hallways may only join other rooms to the north and south
         index.addRule(VerticalHallway.class, VerticalHallway.class, 30, Direction.NORTH, Direction.SOUTH)
                 .when((point, state) -> point.y > 0 && point.y < state.height - 1);
-        index.addRule(VerticalHallway.class, EmptyRoom.class, 70, Direction.NORTH, Direction.SOUTH);
+        index.addRule(VerticalHallway.class, EmptyRoom.class, 60, Direction.NORTH, Direction.SOUTH);
+        index.addRule(VerticalHallway.class, StorageRoom.class, 10, Direction.NORTH, Direction.SOUTH);
     }
 
     /**

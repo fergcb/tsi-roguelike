@@ -6,6 +6,10 @@ import uk.fergcb.rogue.entities.items.Wand;
 
 public class StarterRoom extends Room {
 
+    public StarterRoom(int x, int y) {
+        super(0xba9d1c, x, y);
+    }
+
     @Override
     public String getName() {
         return "dank cellar";

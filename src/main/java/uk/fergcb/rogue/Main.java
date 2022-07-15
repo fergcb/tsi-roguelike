@@ -2,12 +2,10 @@ package uk.fergcb.rogue;
 
 import uk.fergcb.rogue.entities.Interactable;
 import uk.fergcb.rogue.entities.Player;
-import uk.fergcb.rogue.map.rooms.EmptyRoom;
+import uk.fergcb.rogue.map.Level;
+import uk.fergcb.rogue.map.generation.LevelGenerator;
 import uk.fergcb.rogue.map.rooms.Room;
-import uk.fergcb.rogue.map.rooms.StarterRoom;
 import uk.fergcb.rogue.parser.InputScanner;
-import uk.fergcb.rogue.parser.commands.Command;
-import uk.fergcb.rogue.parser.commands.SearchCommand;
 
 public class Main {
 
@@ -18,10 +16,9 @@ public class Main {
     }
 
     private static void start() {
-        Room room = new StarterRoom();
-        room.addEast(new EmptyRoom());
-        room.east.addSouth(new EmptyRoom());
-        room.east.addNorth(new EmptyRoom());
+        LevelGenerator gen = new LevelGenerator(5, 5);
+        Level level = gen.generateLevel();
+        Room room = level.startRoom();
 
         Player player = new Player(room);
 

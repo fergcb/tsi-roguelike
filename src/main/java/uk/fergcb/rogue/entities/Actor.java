@@ -5,6 +5,7 @@ import uk.fergcb.rogue.InteractionType;
 import uk.fergcb.rogue.Inventory;
 import uk.fergcb.rogue.Text;
 import uk.fergcb.rogue.entities.items.Item;
+import uk.fergcb.rogue.map.Direction;
 import uk.fergcb.rogue.map.rooms.Room;
 
 import java.util.Arrays;
@@ -31,21 +32,16 @@ public abstract class Actor extends Entity implements Interactable {
     public boolean onInteract(Interaction action) {
         switch (action.type()) {
             case GO -> {
-                String dir = action.args()[0];
-                Room next = switch(dir) {
-                    case "NORTH" -> currentRoom.north;
-                    case "EAST" -> currentRoom.east;
-                    case "SOUTH" -> currentRoom.south;
-                    case "WEST" -> currentRoom.west;
-                    default -> throw new IllegalArgumentException("No such direction '" + dir + "'.");
-                };
+                String dirString = action.args()[0];
+                Direction dir = Direction.valueOf(dirString);
 
-                if (next == null) {
-                    System.out.printf("There's no way %s from here.\n", Text.blue(dir));
+                if (!currentRoom.hasExit(dir)) {
+                    System.out.printf("There's no way %s from here.\n", Text.blue(dirString));
                     return false;
                 }
 
-                currentRoom = next;
+                currentRoom = currentRoom.getExit(dir);
+
                 return true;
             }
             case LOOK -> {

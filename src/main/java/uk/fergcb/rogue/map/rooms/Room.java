@@ -1,16 +1,16 @@
 package uk.fergcb.rogue.map.rooms;
 
-import uk.fergcb.rogue.Interaction;
 import uk.fergcb.rogue.Text;
 import uk.fergcb.rogue.entities.Actor;
 import uk.fergcb.rogue.entities.Entity;
 import uk.fergcb.rogue.entities.Interactable;
-import uk.fergcb.rogue.entities.Player;
+import uk.fergcb.rogue.map.Direction;
 
 import java.awt.Point;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Optional;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -18,31 +18,30 @@ public abstract class Room {
     public static final int HEIGHT = 3;
     public static final int WIDTH = 7;
 
-    public Room north, east, south, west;
+    public final int previewColor;
+    public final int x, y;
+    public Map<Direction, Room> exits;
     public List<Entity> entities = new ArrayList<>();
 
-    public Room() {
+    public Room(int previewColor, int x, int y) {
+        this.previewColor = previewColor;
+        this.x = x;
+        this.y = y;
+        this.exits = new HashMap<>();
         this.init();
     }
 
-    public void addNorth(Room room) {
-        this.north = room;
-        room.south = this;
+    public void attach(Direction direction, Room room) {
+        exits.put(direction, room);
+        room.exits.put(Direction.inverse(direction), this);
     }
 
-    public void addEast(Room room) {
-        this.east = room;
-        room.west = this;
+    public boolean hasExit(Direction direction) {
+        return exits.containsKey(direction);
     }
 
-    public void addSouth(Room room) {
-        this.south = room;
-        room.north = this;
-    }
-
-    public void addWest(Room room) {
-        this.west = room;
-        room.east = this;
+    public Room getExit(Direction direction) {
+        return exits.get(direction);
     }
 
     public Entity findEntity(String name) {
@@ -95,23 +94,23 @@ public abstract class Room {
 
     public String draw(Actor actor) {
         StringBuilder sb = new StringBuilder();
-        sb.append(north == null ? "      ╔═══════╗\n" : "      ╔══╡" + Text.blue("▲") + "╞══╗\n");
+        sb.append(hasExit(Direction.NORTH) ? "      ╔══╡" + Text.blue("▲") + "╞══╗\n" : "      ╔═══════╗\n");
         String contents = drawContents(actor);
         String[] rows = contents.split("\n");
         for (int i = 0; i < HEIGHT; i++) {
             String row = rows[i];
-            if (west != null && i == 0) sb.append("      ╨");
-            else if (west != null && i == 1) sb.append(Text.blue("      ◀"));
-            else if (west != null) sb.append("      ╥");
+            if (hasExit(Direction.WEST) && i == 0) sb.append("      ╨");
+            else if (hasExit(Direction.WEST) && i == 1) sb.append(Text.blue("      ◀"));
+            else if (hasExit(Direction.WEST)) sb.append("      ╥");
             else sb.append("      ║");
             sb.append(row);
-            if (east != null && i == 0) sb.append("╨");
-            else if (east != null && i == 1) sb.append(Text.blue("▶"));
-            else if (east != null) sb.append("╥");
+            if (hasExit(Direction.EAST) && i == 0) sb.append("╨");
+            else if (hasExit(Direction.EAST) && i == 1) sb.append(Text.blue("▶"));
+            else if (hasExit(Direction.EAST)) sb.append("╥");
             else sb.append("║");
             sb.append("\n");
         }
-        sb.append(south == null ? "      ╚═══════╝\n" : "      ╚══╡" + Text.blue("▼") + "╞══╝\n");
+        sb.append(hasExit(Direction.SOUTH) ? "      ╚══╡" + Text.blue("▼") + "╞══╝\n" : "      ╚═══════╝\n");
         return sb.toString();
     }
 
@@ -148,12 +147,10 @@ public abstract class Room {
     }
 
     private List<String> exitStrings() {
-        List<String> exits = new ArrayList<>();
-        if (north != null) exits.add("North");
-        if (east != null) exits.add("East");
-        if (south != null) exits.add("South");
-        if (west != null) exits.add("West");
-        return exits;
+        return exits.keySet()
+                .stream()
+                .map(Enum::name)
+                .toList();
     }
 
     public abstract String getName();

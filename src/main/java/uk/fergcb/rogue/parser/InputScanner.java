@@ -13,7 +13,10 @@ import uk.fergcb.rogue.parser.combinators.Some;
 import uk.fergcb.rogue.parser.commands.*;
 import uk.fergcb.rogue.parser.tokens.Word;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.Scanner;
 
 public class InputScanner {
 

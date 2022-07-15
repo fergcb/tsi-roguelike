@@ -1,7 +1,5 @@
 package uk.fergcb.rogue.parser;
 
-import java.util.Optional;
-
 public class ParseResult<T> {
 
     public static <U> ParseResult<U> match(U value, String rest) {

@@ -3,7 +3,6 @@ package uk.fergcb.rogue.map.generation;
 import uk.fergcb.rogue.map.Direction;
 import uk.fergcb.rogue.map.rooms.Room;
 
-
 import java.util.*;
 
 /**

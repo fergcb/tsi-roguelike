@@ -9,7 +9,7 @@ import uk.fergcb.rogue.parser.combinators.Sequence;
 
 import java.util.List;
 
-import static uk.fergcb.rogue.parser.Parsers.*;
+import static uk.fergcb.rogue.parser.Parsers.str;
 
 public class LookCommand extends Command {
 

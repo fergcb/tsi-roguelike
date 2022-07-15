@@ -7,8 +7,8 @@ import uk.fergcb.rogue.map.rooms.Room;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 /**

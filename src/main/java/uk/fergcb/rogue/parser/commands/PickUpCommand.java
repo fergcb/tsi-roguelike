@@ -4,9 +4,7 @@ import uk.fergcb.rogue.Interaction;
 import uk.fergcb.rogue.InteractionType;
 import uk.fergcb.rogue.Text;
 import uk.fergcb.rogue.entities.Actor;
-import uk.fergcb.rogue.entities.Container;
 import uk.fergcb.rogue.entities.Entity;
-import uk.fergcb.rogue.entities.Interactable;
 import uk.fergcb.rogue.entities.items.Item;
 import uk.fergcb.rogue.parser.ParseResult;
 import uk.fergcb.rogue.parser.Parser;
@@ -14,7 +12,8 @@ import uk.fergcb.rogue.parser.combinators.Sequence;
 
 import java.util.List;
 
-import static uk.fergcb.rogue.parser.Parsers.*;
+import static uk.fergcb.rogue.parser.Parsers.phrase;
+import static uk.fergcb.rogue.parser.Parsers.strs;
 
 public class PickUpCommand extends Command {
 

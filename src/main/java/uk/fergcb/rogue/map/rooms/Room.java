@@ -6,7 +6,7 @@ import uk.fergcb.rogue.entities.Entity;
 import uk.fergcb.rogue.entities.Interactable;
 import uk.fergcb.rogue.map.Direction;
 
-import java.awt.Point;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

@@ -7,11 +7,13 @@ import uk.fergcb.rogue.entities.Actor;
 import uk.fergcb.rogue.parser.ParseResult;
 import uk.fergcb.rogue.parser.Parser;
 import uk.fergcb.rogue.parser.combinators.Sequence;
-import static uk.fergcb.rogue.parser.Parsers.*;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
+
+import static uk.fergcb.rogue.parser.Parsers.phrase;
+import static uk.fergcb.rogue.parser.Parsers.word;
 
 public class GoCommand extends Command {
     private static final List<String> validDirs = Arrays.asList("NORTH", "EAST", "SOUTH", "WEST");

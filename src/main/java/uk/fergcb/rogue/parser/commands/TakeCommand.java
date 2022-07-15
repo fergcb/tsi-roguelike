@@ -6,7 +6,6 @@ import uk.fergcb.rogue.Text;
 import uk.fergcb.rogue.entities.Actor;
 import uk.fergcb.rogue.entities.Container;
 import uk.fergcb.rogue.entities.Entity;
-import uk.fergcb.rogue.entities.Interactable;
 import uk.fergcb.rogue.entities.items.Item;
 import uk.fergcb.rogue.parser.ParseResult;
 import uk.fergcb.rogue.parser.Parser;

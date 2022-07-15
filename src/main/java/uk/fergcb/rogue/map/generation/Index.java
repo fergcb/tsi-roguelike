@@ -82,6 +82,8 @@ public class Index {
      */
     public Class<? extends Room> chooseNext(Class<? extends Room> origin, Direction direction, Point targetPoint, GeneratorState state) {
         Map<Direction, List<Link>> outboundRules = rules.get(origin);
+        if (outboundRules == null) return null;
+
         List<Link> allowedLinks = outboundRules.get(direction);
         if (allowedLinks == null) return null;
 

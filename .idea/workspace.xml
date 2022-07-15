@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4fe50d8b-c0e5-4f38-9b12-ff34f384d4b1" name="Changes" comment="Add level generation&#10;&#10;As a byproduct, the way directions are handled has been improved.">
-      <change afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/generation/GeneratorState.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/generation/Link.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/generation/LinkCollection.java" afterDir="false" />
+    <list default="true" id="4fe50d8b-c0e5-4f38-9b12-ff34f384d4b1" name="Changes" comment="Allow links to be validated with additional logic">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/generation/Index.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/generation/Index.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/generation/LevelGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/generation/LevelGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/Level.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/Level.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/generation/LevelPreview.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/generation/LevelPreview.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -149,7 +146,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657879076278</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Allow links to be validated with additional logic">
+      <created>1657884284508</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1657884284508</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -169,7 +173,8 @@
     <MESSAGE value="Fix: Game loop not updating room on player move" />
     <MESSAGE value="Add combinatory parsing system for interactions" />
     <MESSAGE value="Add level generation&#10;&#10;As a byproduct, the way directions are handled has been improved." />
-    <option name="LAST_COMMIT_MESSAGE" value="Add level generation&#10;&#10;As a byproduct, the way directions are handled has been improved." />
+    <MESSAGE value="Allow links to be validated with additional logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="Allow links to be validated with additional logic" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

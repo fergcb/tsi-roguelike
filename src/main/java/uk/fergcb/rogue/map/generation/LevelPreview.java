@@ -7,9 +7,7 @@ import uk.fergcb.rogue.map.rooms.Room;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Stack;
+import java.util.Iterator;
 
 /**
  * A quick GUI to visualise generated levels
@@ -31,21 +29,9 @@ public class LevelPreview {
         int[] pixels = new int[h * w * 49];
 
         // Traverse the level, depth-first
-        List<Room> visited = new ArrayList<>();
-        Stack<Room> toVisit = new Stack<>();
-        toVisit.push(level.startRoom());
-
-        while (toVisit.size() > 0) {
-            Room currentRoom = toVisit.pop();
-
-            drawRoom(currentRoom, pixels, sw);
-
-            visited.add(currentRoom);
-            currentRoom.exits
-                    .values()
-                    .stream()
-                    .filter(room -> !visited.contains(room))
-                    .forEach(toVisit::push);
+        Iterator<Room> it = level.roomIterator();
+        while (it.hasNext()) {
+            drawRoom(it.next(), pixels, sw);
         }
 
         // Write the pixel array to an image and wrap it in a Swing icon

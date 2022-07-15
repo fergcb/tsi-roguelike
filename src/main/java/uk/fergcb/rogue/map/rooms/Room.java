@@ -44,6 +44,11 @@ public abstract class Room {
         return exits.get(direction);
     }
 
+    public void addEntity(Entity entity) {
+        this.entities.add(entity);
+        entity.currentRoom = this;
+    }
+
     public Entity findEntity(String name) {
         return this.entities
                 .stream()
@@ -83,6 +88,7 @@ public abstract class Room {
         int entitiesToDraw = Math.min(positions.length, entities.size());
         for (int i = 0; i < entitiesToDraw; i++) {
             Entity entity = entities.get(i);
+            if (entity == actor) continue;
             Point pos = positions[i];
             contents[pos.y][pos.x] = entity.draw();
         }

@@ -20,7 +20,8 @@ public class Main {
         Level level = gen.generateLevel();
         Room room = level.startRoom();
 
-        Player player = new Player(room);
+        Player player = new Player();
+        room.addEntity(player);
 
         boolean gameOver = false;
         boolean shouldDraw = true;

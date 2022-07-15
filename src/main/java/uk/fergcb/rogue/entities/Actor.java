@@ -6,19 +6,12 @@ import uk.fergcb.rogue.Inventory;
 import uk.fergcb.rogue.Text;
 import uk.fergcb.rogue.entities.items.Item;
 import uk.fergcb.rogue.map.Direction;
-import uk.fergcb.rogue.map.rooms.Room;
 
 import java.util.Arrays;
 import java.util.List;
 
 public abstract class Actor extends Entity implements Interactable {
     public final Inventory inventory = new Inventory();
-
-    public Room currentRoom;
-
-    public Actor(Room room) {
-        this.currentRoom = room;
-    }
 
     @Override
     public boolean canInteract(Interaction action) {

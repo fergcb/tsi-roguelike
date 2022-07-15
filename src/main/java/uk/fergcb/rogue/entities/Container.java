@@ -10,7 +10,8 @@ public abstract class Container extends Entity implements Interactable {
     public final Inventory inventory;
 
     public Container () {
-       this.inventory = new Inventory();
+        super();
+        this.inventory = new Inventory();
     }
 
     protected abstract boolean isLocked();

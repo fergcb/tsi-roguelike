@@ -20,6 +20,6 @@ public class StarterRoom extends Room {
         Chest chest = new Chest();
         chest.inventory.add(new Sword());
         chest.inventory.add(new Wand());
-        this.entities.add(chest);
+        addEntity(chest);
     }
 }

@@ -1,9 +1,13 @@
 package uk.fergcb.rogue.entities;
 
+import uk.fergcb.rogue.map.rooms.Room;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public abstract class Entity {
+
+    public Room currentRoom = null;
 
     public static String stripArticle(String nounPhrase) {
         Pattern pattern = Pattern.compile("^(the|a|an)\\s+");

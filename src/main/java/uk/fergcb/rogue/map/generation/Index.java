@@ -67,7 +67,7 @@ public class Index {
         List<Link> allowedLinks = outboundRules.get(direction);
         return allowedLinks
                 .stream()
-                .filter(link -> link.validator.apply(targetPoint, state))
+                .filter(link -> link.validate(targetPoint, state))
                 .filter(link -> link.roomClass != null)
                 .anyMatch(link -> link.roomClass.equals(target));
     }
@@ -80,7 +80,7 @@ public class Index {
      * @param state The current state of the generator
      * @return The class of the chosen Room type.
      */
-    public Class<? extends Room> chooseNext(Class<? extends Room> origin, Direction direction, Point targetPoint, GeneratorState state) {
+    public Link chooseNext(Class<? extends Room> origin, Direction direction, Point targetPoint, GeneratorState state) {
         Map<Direction, List<Link>> outboundRules = rules.get(origin);
         if (outboundRules == null) return null;
 
@@ -89,7 +89,7 @@ public class Index {
 
         allowedLinks.retainAll(allowedLinks
                 .stream()
-                .filter(link -> link.validator.apply(targetPoint, state))
+                .filter(link -> link.validate(targetPoint, state))
                 .toList()
         );
 
@@ -110,8 +110,6 @@ public class Index {
             pin -= choice.weight;
         } while (pin >= 0);
 
-        if (!choice.validator.apply(targetPoint, state)) return null;
-
-        return choice.roomClass;
+        return choice;
     }
 }

@@ -6,6 +6,9 @@ import uk.fergcb.rogue.map.rooms.*;
 
 import java.awt.*;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
+import java.util.Random;
+import java.util.Stack;
 
 /**
  * The brain of the Level generation operation
@@ -34,9 +37,9 @@ public class LevelGenerator {
         // Empty rooms can neighbour other rooms, and hallways
         index.addRule(EmptyRoom.class, EmptyRoom.class, 20, Direction.values());
         index.addRule(EmptyRoom.class, StorageRoom.class, 5, Direction.values());
-        index.addRule(EmptyRoom.class, HorizontalHallway.class, 30, Direction.EAST, Direction.WEST)
+        index.addRule(EmptyRoom.class, HorizontalHallway.class, 40, Direction.EAST, Direction.WEST)
                 .when((point, state) -> point.x > 0 && point.x < state.width - 1);
-        index.addRule(EmptyRoom.class, VerticalHallway.class, 30, Direction.NORTH, Direction.SOUTH)
+        index.addRule(EmptyRoom.class, VerticalHallway.class, 40, Direction.NORTH, Direction.SOUTH)
                 .when((point, state) -> point.y > 0 && point.y < state.height - 1);
         index.addRule(EmptyRoom.class, null, 40, Direction.values());
 
@@ -71,22 +74,32 @@ public class LevelGenerator {
      * @return The generated Level
      */
     public Level generateLevel() {
-        final GeneratorState state = new GeneratorState(width, height);
+
+        final int minSize = width * height / 4;
 
         // Place the starter room in the middle of the map
         final int sx = width / 2;
         final int sy = height / 2;
 
         final Point starterPoint = new Point(sx, sy);
-        final Room starterRoom = new StarterRoom(sx, sy);
 
-        state.generated.put(starterPoint, starterRoom);
-        state.toExpand.push(starterPoint);
+        GeneratorState state;
+        Room starterRoom;
 
-        while (state.isExpanding()) {
-            Point currentPoint = state.toExpand.pop();
-            expand(currentPoint, state);
-        }
+        do {
+            state = new GeneratorState(width, height);
+            starterRoom = new StarterRoom(sx, sy);
+
+            state.generated.put(starterPoint, starterRoom);
+            state.toExpand.push(starterPoint);
+
+            while (state.isExpanding()) {
+                Point currentPoint = state.toExpand.pop();
+                expand(currentPoint, state);
+            }
+        } while (state.generated.size() < minSize);
+
+        insertCageRoom(starterRoom);
 
         return new Level(width, height, starterRoom);
     }
@@ -135,13 +148,42 @@ public class LevelGenerator {
      * @return the new Room, or null if no room should be placed here
      */
     private Room createNextRoom(Room currentRoom, Direction direction, Point nextPoint, GeneratorState state) {
-        Class<? extends Room> nextRoomClass = index.chooseNext(currentRoom.getClass(), direction, nextPoint, state);
-        if (nextRoomClass == null) return null;
+        Link link = index.chooseNext(currentRoom.getClass(), direction, nextPoint, state);
+        if (link == null || link.roomClass == null) return null;
+        Class<? extends Room> nextRoomClass = link.roomClass;
         try {
-            return nextRoomClass.getConstructor(int.class, int.class).newInstance(nextPoint.x, nextPoint.y);
+            Room room = nextRoomClass.getConstructor(int.class, int.class).newInstance(nextPoint.x, nextPoint.y);
+            link.callback(room, state);
+            return room;
         } catch (InstantiationException | IllegalAccessException | InvocationTargetException |
                  NoSuchMethodException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    private void insertCageRoom(Room starterRoom) {
+        Random random = new Random();
+
+        Room current = starterRoom;
+        Stack<Room> path = new Stack<>();
+
+        while (current.exits.size() > 0) {
+            path.add(current);
+            List<Room> exits = current.exits.keySet()
+                    .stream()
+                    .map(current::getExit)
+                    .filter(room -> !path.contains(room))
+                    .toList();
+            if (exits.size() == 0) break;
+            current = exits.get(random.nextInt(exits.size()));
+        }
+
+        Room cageRoom = new CageRoom(current.x, current.y);
+
+        for (Direction dir : Direction.values()) {
+            if (current.hasExit(dir)) {
+                cageRoom.attach(dir, current.getExit(dir));
+            }
         }
     }
 

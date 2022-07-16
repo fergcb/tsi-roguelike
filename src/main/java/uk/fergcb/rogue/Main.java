@@ -39,8 +39,8 @@ public class Main {
     }
 
     private static boolean handleInteraction(Interaction interaction) {
-
-        if (interaction.type() == InteractionType.FAIL) {
+        // System.out.println(interaction);
+        if (interaction.type() == InteractionType.FAIL || interaction.type() == InteractionType.CLARIFY) {
             System.out.println(interaction.args()[0]);
             return false;
         }

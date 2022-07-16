@@ -27,11 +27,23 @@ public class SearchCommand extends Command {
         }
 
         String targetName = Entity.stripArticle(args.get(0));
-        Interactable target = actor.currentRoom.findInteractableEntity(targetName);
+        List<Interactable> targets = actor.currentRoom.findInteractableEntity(targetName);
 
-        if (target == null) return Interaction.fail("I can't see a " + Text.red(targetName) + " to search.");
+        if (targets.size() == 0)
+            return Interaction.fail("I can't see a " + Text.red(targetName) + " to search.");
 
-        return new Interaction(InteractionType.SEARCH, actor, target);
+        if (targets.size() == 1) {
+            Interactable target = targets.get(0);
+            return new Interaction(InteractionType.SEARCH, actor, target);
+        }
+
+        List<String> options = targets
+                .stream()
+                .map(target -> (Entity)target)
+                .map(Entity::getName)
+                .toList();
+
+        return Interaction.clarify(targetName, options);
     }
 
     @Override

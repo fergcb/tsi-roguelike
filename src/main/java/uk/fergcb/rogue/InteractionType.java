@@ -8,4 +8,5 @@ public enum InteractionType {
     TAKE,
     DROP,
     PICK_UP,
+    CLARIFY
 }

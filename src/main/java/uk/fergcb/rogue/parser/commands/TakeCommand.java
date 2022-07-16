@@ -22,21 +22,31 @@ public class TakeCommand extends Command {
     @Override
     protected Interaction resolve(String command, List<String> args, Actor actor) {
         String targetName = Entity.stripArticle(args.get(2));
-        Entity target = actor.currentRoom.findEntity(targetName);
+        List<Entity> targets = actor.currentRoom.findEntity(targetName);
 
-        if (target == null)
+        if (targets.size() == 0)
             return Interaction.fail("I can't see a " + Text.red(targetName) + " to take from.");
 
-        if (!(target instanceof Container container))
-            return Interaction.fail(target.getDefiniteName() + " has nothing for me to take.");
+        if (targets.size() == 1) {
+            Entity target = targets.get(0);
+            if (!(target instanceof Container container))
+                return Interaction.fail(target.getDefiniteName() + " has nothing for me to take.");
 
-        String itemName = Entity.stripArticle(args.get(0));
-        Item item = container.inventory.searchFor(itemName);
+            String itemName = Entity.stripArticle(args.get(0));
+            List<Item> items = container.inventory.searchFor(itemName);
 
-        if (item == null)
-            return Interaction.fail("I can't find a " + Text.red(itemName) + " in " + container.getDefiniteName());
+            if (items.size() == 0)
+                return Interaction.fail("I can't find a " + Text.red(itemName) + " in " + container.getDefiniteName());
 
-        return new Interaction(InteractionType.TAKE, actor, container, itemName);
+            return new Interaction(InteractionType.TAKE, actor, container, itemName);
+        }
+
+        List<String> options = targets
+                .stream()
+                .map(Entity::getName)
+                .toList();
+
+        return Interaction.clarify(targetName, options);
     }
 
     @Override

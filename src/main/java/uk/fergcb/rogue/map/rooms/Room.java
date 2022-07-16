@@ -49,27 +49,29 @@ public abstract class Room {
         entity.currentRoom = this;
     }
 
-    public Entity findEntity(String name) {
-        return this.entities
-                .stream()
-                .filter(entity -> entity
-                        .getName()
-                        .replaceAll("\u001B\\[[;\\d]*m", "")
-                        .equalsIgnoreCase(name))
-                .findFirst()
-                .orElse(null);
+    public List<Entity> findEntity(String name) {
+        List<Entity> matches = new ArrayList<>();
+        for (Entity entity : this.entities) {
+            int distance = entity.matchName(name);
+            if (distance == -1) continue;
+            if (distance == 0) return List.of(entity);
+            matches.add(entity);
+        }
+
+        return matches;
     }
 
-    public Interactable findInteractableEntity(String name) {
-        return (Interactable) this.entities
-                .stream()
-                .filter(entity -> entity instanceof Interactable)
-                .filter(entity -> entity
-                        .getName()
-                        .replaceAll("\u001B\\[[;\\d]*m", "")
-                        .equalsIgnoreCase(name))
-                .findFirst()
-                .orElse(null);
+    public List<Interactable> findInteractableEntity(String name) {
+        List<Interactable> matches = new ArrayList<>();
+        for (Entity entity : this.entities) {
+            if (!(entity instanceof Interactable)) continue;
+            int distance = entity.matchName(name);
+            if (distance == -1) continue;
+            if (distance == 0) return List.of((Interactable) entity);
+            matches.add((Interactable) entity);
+        }
+
+        return matches;
     }
 
     public String drawContents(Actor actor) {

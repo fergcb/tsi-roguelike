@@ -1,6 +1,6 @@
 package uk.fergcb.rogue.entities.items;
 
-import uk.fergcb.rogue.Text;
+import java.util.Map;
 
 public class Gem extends Item {
 
@@ -19,10 +19,17 @@ public class Gem extends Item {
     }
 
     @Override
+    public Map<String, Integer> getValidNames() {
+        Map<String, Integer> validNames = super.getValidNames();
+        validNames.put(type.name(), 5);
+        validNames.put("GEM", 10);
+        return validNames;
+    }
+    @Override
     public void tick() {}
 
     @Override
     public String draw() {
-        return Text.lime("◆");
+        return type.colorize.apply("◆");
     }
 }

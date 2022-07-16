@@ -22,9 +22,9 @@ public class DropCommand extends Command {
     @Override
     protected Interaction resolve(String command, List<String> args, Actor actor) {
         String itemName = Entity.stripArticle(args.get(0));
-        Item item = actor.inventory.searchFor(itemName);
+        List<Item> items = actor.inventory.searchFor(itemName);
 
-        if (item == null)
+        if (items.size() == 0)
             return Interaction.fail("I don't have a " + Text.red(itemName) + ".");
 
         return new Interaction(InteractionType.DROP, actor, actor, itemName);

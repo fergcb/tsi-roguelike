@@ -1,4 +1,4 @@
-package uk.fergcb.rogue.entities;
+package uk.fergcb.rogue.entities.actors;
 
 import uk.fergcb.rogue.Text;
 

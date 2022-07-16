@@ -4,7 +4,26 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4fe50d8b-c0e5-4f38-9b12-ff34f384d4b1" name="Changes" comment="Add the cage room &amp; improve add link callbacks" />
+    <list default="true" id="4fe50d8b-c0e5-4f38-9b12-ff34f384d4b1" name="Changes" comment="Add the cage room &amp; improve add link callbacks">
+      <change afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/NewText.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/actors/Minotaur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/Interaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/Interaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/Text.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/Text.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/Actor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/actors/Actor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/Container.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/Container.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/actors/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/rooms/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/rooms/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/InputScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/InputScanner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/commands/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/commands/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/commands/DropCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/commands/DropCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/commands/GoCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/commands/GoCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/commands/LookCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/commands/LookCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/commands/PickUpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/commands/PickUpCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/commands/SearchCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/commands/SearchCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/commands/TakeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/commands/TakeCommand.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -220,7 +239,14 @@
       <option name="project" value="LOCAL" />
       <updated>1657993364730</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Add the cage room &amp; improve add link callbacks">
+      <created>1657993565263</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1657993565263</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

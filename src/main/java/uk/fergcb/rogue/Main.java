@@ -1,7 +1,7 @@
 package uk.fergcb.rogue;
 
 import uk.fergcb.rogue.entities.Interactable;
-import uk.fergcb.rogue.entities.Player;
+import uk.fergcb.rogue.entities.actors.Player;
 import uk.fergcb.rogue.map.Level;
 import uk.fergcb.rogue.map.generation.LevelGenerator;
 import uk.fergcb.rogue.map.rooms.Room;

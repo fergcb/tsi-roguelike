@@ -1,7 +1,7 @@
 package uk.fergcb.rogue.map.rooms;
 
 import uk.fergcb.rogue.Text;
-import uk.fergcb.rogue.entities.Actor;
+import uk.fergcb.rogue.entities.actors.Actor;
 import uk.fergcb.rogue.entities.Entity;
 import uk.fergcb.rogue.entities.Interactable;
 import uk.fergcb.rogue.map.Direction;

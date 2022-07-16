@@ -1,7 +1,7 @@
 package uk.fergcb.rogue.parser.commands;
 
 import uk.fergcb.rogue.Interaction;
-import uk.fergcb.rogue.entities.Actor;
+import uk.fergcb.rogue.entities.actors.Actor;
 import uk.fergcb.rogue.parser.ParseResult;
 
 import java.util.List;

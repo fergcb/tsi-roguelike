@@ -1,9 +1,11 @@
-package uk.fergcb.rogue.entities;
+package uk.fergcb.rogue.entities.actors;
 
 import uk.fergcb.rogue.Interaction;
 import uk.fergcb.rogue.InteractionType;
 import uk.fergcb.rogue.Inventory;
 import uk.fergcb.rogue.Text;
+import uk.fergcb.rogue.entities.Entity;
+import uk.fergcb.rogue.entities.Interactable;
 import uk.fergcb.rogue.entities.items.Item;
 import uk.fergcb.rogue.map.Direction;
 

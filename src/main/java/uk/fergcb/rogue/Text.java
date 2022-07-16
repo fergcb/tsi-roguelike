@@ -25,6 +25,8 @@ public class Text {
     private static final String ANSI_BG_BRIGHT_WHITE = "\u001b[47;1m";
     private static final String ANSI_BG_246 = "\u001b[48;5;246m";
 
+    private static final String ANSI_ITALIC = "\u001b[3m";
+
     private static final String ANSI_RESET = "\u001b[0m";
 
     public static String black(String text) {
@@ -77,6 +79,10 @@ public class Text {
 
     public static String bgWhite(String text) {
         return ANSI_BG_246 + text + ANSI_RESET;
+    }
+
+    public static String italic(String text) {
+        return ANSI_ITALIC + text + ANSI_RESET;
     }
 
     public static String capitalize(String text) {

@@ -122,6 +122,10 @@ public abstract class Room {
         return sb.toString();
     }
 
+    public String observe() {
+        return "";
+    }
+
     public String describe() {
         StringBuilder sb = new StringBuilder();
         sb.append("You are in a ");
@@ -151,6 +155,12 @@ public abstract class Room {
             }
             sb.append(".\n");
         }
+
+        if (this.observe().length() > 0) {
+            sb.append("\n");
+            sb.append(Text.italic(Text.grey(this.observe())));
+        }
+
         return sb.toString();
     }
 

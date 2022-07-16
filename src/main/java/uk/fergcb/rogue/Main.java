@@ -27,8 +27,9 @@ public class Main {
         boolean shouldDraw = true;
         while (!gameOver) {
             if (shouldDraw) {
-                System.out.print(player.currentRoom.draw(player));
-                System.out.print(player.currentRoom.describe());
+                System.out.println();
+                System.out.println(player.currentRoom.draw(player));
+                System.out.println(player.currentRoom.describe());
             }
 
             Interaction action = input.nextInteraction(player);

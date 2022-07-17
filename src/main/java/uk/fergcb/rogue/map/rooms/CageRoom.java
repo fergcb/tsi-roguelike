@@ -1,6 +1,7 @@
 package uk.fergcb.rogue.map.rooms;
 
 import uk.fergcb.rogue.entities.Cage;
+import uk.fergcb.rogue.entities.actors.Minotaur;
 
 public class CageRoom extends Room {
     public CageRoom(int x, int y) {
@@ -26,5 +27,6 @@ public class CageRoom extends Room {
     @Override
     public void init() {
         addEntity(new Cage());
+        addEntity(new Minotaur());
     }
 }

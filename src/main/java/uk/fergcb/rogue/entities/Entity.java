@@ -12,6 +12,7 @@ import java.util.regex.Pattern;
 public abstract class Entity {
 
     public Room currentRoom = null;
+    private boolean hasTicked = false;
 
     public static String stripArticle(String nounPhrase) {
         Pattern pattern = Pattern.compile("^(the|a|an)\\s+");
@@ -54,7 +55,17 @@ public abstract class Entity {
         return -1;
     }
 
+    public final void tick() {
+        if (hasTicked) return;
+        this.doTick();
+        hasTicked = true;
+    }
+
+    public final void prime() {
+        hasTicked = false;
+    }
+
     public abstract String getName();
-    public abstract void tick();
+    public abstract void doTick();
     public abstract String draw();
 }

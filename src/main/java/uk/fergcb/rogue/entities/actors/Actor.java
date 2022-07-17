@@ -8,6 +8,7 @@ import uk.fergcb.rogue.entities.Entity;
 import uk.fergcb.rogue.entities.Interactable;
 import uk.fergcb.rogue.entities.items.Item;
 import uk.fergcb.rogue.map.Direction;
+import uk.fergcb.rogue.map.rooms.Room;
 
 import java.util.Arrays;
 import java.util.List;
@@ -24,6 +25,12 @@ public abstract class Actor extends Entity implements Interactable {
         return allowed.contains(action.type()) && action.target() == this;
     }
 
+    public void moveTo(Room destination) {
+        currentRoom.movedEntities.add(this);
+        destination.entities.add(this);
+        this.currentRoom = destination;
+    }
+
     @Override
     public boolean onInteract(Interaction action) {
         switch (action.type()) {
@@ -36,7 +43,8 @@ public abstract class Actor extends Entity implements Interactable {
                     return false;
                 }
 
-                currentRoom = currentRoom.getExit(dir);
+                Room nextRoom = currentRoom.getExit(dir);
+                moveTo(nextRoom);
 
                 return true;
             }

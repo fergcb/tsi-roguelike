@@ -1,9 +1,10 @@
 package uk.fergcb.rogue.map.rooms;
 
 import uk.fergcb.rogue.Text;
-import uk.fergcb.rogue.entities.actors.Actor;
 import uk.fergcb.rogue.entities.Entity;
 import uk.fergcb.rogue.entities.Interactable;
+import uk.fergcb.rogue.entities.actors.Actor;
+import uk.fergcb.rogue.entities.actors.Player;
 import uk.fergcb.rogue.map.Direction;
 
 import java.awt.*;
@@ -22,6 +23,7 @@ public abstract class Room {
     public final int x, y;
     public Map<Direction, Room> exits;
     public List<Entity> entities = new ArrayList<>();
+    public List<Entity> movedEntities = new ArrayList<>();
 
     public Room(int previewColor, int x, int y) {
         this.previewColor = previewColor;
@@ -131,13 +133,16 @@ public abstract class Room {
         sb.append("You are in a ");
         sb.append(this.getName());
         sb.append(".\nThere ");
-        if (entities.size() > 0) {
-            sb.append(entities.size() > 1 ? "are " : "is ");
-            for (int i = 0; i < entities.size(); i++) {
-                Entity entity = entities.get(i);
+
+        List<Entity> visibleEntities = entities.stream().filter(entity -> !(entity instanceof Player)).toList();
+        int numEntities = visibleEntities.size();
+        if (numEntities > 0) {
+            sb.append(numEntities > 1 ? "are " : "is ");
+            for (int i = 0; i < numEntities; i++) {
+                Entity entity = visibleEntities.get(i);
                 sb.append(entity.getIndefiniteName());
-                if (entities.size() > 1 && i < entities.size() - 1) {
-                    sb.append(i == entities.size() - 2 ? " and " : ", ");
+                if (numEntities > 1 && i < numEntities - 1) {
+                    sb.append(i == numEntities - 2 ? " and " : ", ");
                 }
             }
         } else {
@@ -164,8 +169,15 @@ public abstract class Room {
         return sb.toString();
     }
 
+    public final void prime() {
+        entities.forEach(Entity::prime);
+    }
+
     public void tick() {
         entities.forEach(Entity::tick);
+
+        this.entities.removeAll(movedEntities);
+        this.movedEntities.clear();
     }
 
     private List<String> exitStrings() {

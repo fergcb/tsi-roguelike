@@ -23,7 +23,7 @@ public class Potion extends Item {
     }
 
     @Override
-    public void tick() {}
+    public void doTick() {}
 
     @Override
     public String draw() {

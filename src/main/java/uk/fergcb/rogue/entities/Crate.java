@@ -10,7 +10,7 @@ public class Crate extends Container {
     }
 
     @Override
-    public void tick() {}
+    public void doTick() {}
 
     @Override
     protected boolean isLocked() {

@@ -9,7 +9,7 @@ public class Cage extends Entity {
     }
 
     @Override
-    public void tick() {
+    public void doTick() {
 
     }
 

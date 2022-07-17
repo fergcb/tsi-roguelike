@@ -26,7 +26,7 @@ public class Gem extends Item {
         return validNames;
     }
     @Override
-    public void tick() {}
+    public void doTick() {}
 
     @Override
     public String draw() {

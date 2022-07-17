@@ -20,7 +20,7 @@ public class Player extends Actor {
     }
 
     @Override
-    public void tick() { }
+    public void doTick() { }
 
     @Override
     public String draw() {

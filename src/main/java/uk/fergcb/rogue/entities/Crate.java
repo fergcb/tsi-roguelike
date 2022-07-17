@@ -5,6 +5,14 @@ import uk.fergcb.rogue.Text;
 public class Crate extends Container {
 
     @Override
+    public String describe() {
+        return """
+                The crate is made of rough wooden slats.
+                It looks easy enough to prize open the lid.
+                """;
+    }
+
+    @Override
     public String getName() {
         return Text.yellow("CRATE");
     }

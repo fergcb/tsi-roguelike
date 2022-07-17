@@ -5,6 +5,11 @@ import uk.fergcb.rogue.Text;
 public class Chest extends Container {
 
     @Override
+    public String describe() {
+        return "The wooden chest is reinforced with wrought iron bands.\n";
+    }
+
+    @Override
     public String getName() {
         return Text.yellow("CHEST");
     }

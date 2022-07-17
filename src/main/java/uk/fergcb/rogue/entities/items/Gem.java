@@ -1,5 +1,7 @@
 package uk.fergcb.rogue.entities.items;
 
+import uk.fergcb.rogue.Text;
+
 import java.util.Map;
 
 public class Gem extends Item {
@@ -25,6 +27,12 @@ public class Gem extends Item {
         validNames.put("GEM", 10);
         return validNames;
     }
+
+    @Override
+    public String describe() {
+        return Text.capitalize(getDefiniteName()) + ".";
+    }
+
     @Override
     public void doTick() {}
 

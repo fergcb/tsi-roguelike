@@ -20,6 +20,11 @@ public class Player extends Actor {
     }
 
     @Override
+    public String describe() {
+        return "You are a hapless adventurer.";
+    }
+
+    @Override
     public void doTick() { }
 
     @Override

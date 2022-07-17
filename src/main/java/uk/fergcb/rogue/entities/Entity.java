@@ -65,6 +65,7 @@ public abstract class Entity {
         hasTicked = false;
     }
 
+    public abstract String describe();
     public abstract String getName();
     public abstract void doTick();
     public abstract String draw();

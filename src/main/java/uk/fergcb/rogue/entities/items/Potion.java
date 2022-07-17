@@ -1,5 +1,7 @@
 package uk.fergcb.rogue.entities.items;
 
+import uk.fergcb.rogue.Text;
+
 import java.util.Map;
 
 public class Potion extends Item {
@@ -20,6 +22,11 @@ public class Potion extends Item {
         Map<String, Integer> validNames = super.getValidNames();
         validNames.put("POTION", 50);
         return validNames;
+    }
+
+    @Override
+    public String describe() {
+        return Text.capitalize(getDefiniteName()) + ".";
     }
 
     @Override

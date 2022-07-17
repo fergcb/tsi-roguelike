@@ -28,7 +28,8 @@ public class Minotaur extends Actor {
     public void doTick() {
         Random random = new Random();
 
-        if (currentRoom.entities.stream().anyMatch(entity -> entity instanceof Player)) return;
+        // TODO: attack & follow the player
+        if (currentRoom.hasPlayer()) return;
 
         List<Direction> directions = currentRoom.exits.keySet().stream().toList();
         Direction direction = directions.get(random.nextInt(directions.size()));

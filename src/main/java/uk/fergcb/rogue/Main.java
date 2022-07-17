@@ -23,20 +23,24 @@ public class Main {
         Player player = new Player();
         room.addEntity(player);
 
+        System.out.println(player.currentRoom.draw(player));
+        System.out.println(player.currentRoom.describe());
+
         boolean gameOver = false;
-        boolean shouldDraw = true;
         while (!gameOver) {
+            Interaction action = input.nextInteraction(player);
+            boolean shouldDraw = handleInteraction(action);
+
+            level.roomStream().forEachOrdered(Room::preTick);
+            level.roomStream().forEachOrdered(Room::tick);
+
             if (shouldDraw) {
                 System.out.println();
                 System.out.println(player.currentRoom.draw(player));
                 System.out.println(player.currentRoom.describe());
             }
 
-            Interaction action = input.nextInteraction(player);
-            shouldDraw = handleInteraction(action);
-
-            level.roomStream().forEachOrdered(Room::prime);
-            level.roomStream().forEachOrdered(Room::tick);
+            level.roomStream().forEachOrdered(Room::postTick);
         }
     }
 

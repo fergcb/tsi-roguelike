@@ -22,7 +22,8 @@ public abstract class Room {
     public final int x, y;
     public Map<Direction, Room> exits;
     public List<Entity> entities = new ArrayList<>();
-    public List<Entity> movedEntities = new ArrayList<>();
+    public Map<Entity, Direction> leavingEntities = new HashMap<>();
+    public Map<Entity, Direction> arrivingEntities = new HashMap<>();
 
     public Room(int previewColor, int x, int y) {
         this.previewColor = previewColor;
@@ -60,6 +61,13 @@ public abstract class Room {
         }
 
         return matches;
+    }
+
+    public boolean hasPlayer() {
+        return entities
+                .stream()
+                .filter(entity -> !leavingEntities.containsKey(entity))
+                .anyMatch(entity -> entity instanceof Player);
     }
 
     public String drawContents(Actor actor) {
@@ -120,7 +128,12 @@ public abstract class Room {
         sb.append(this.getName());
         sb.append(".\nThere ");
 
-        List<Entity> visibleEntities = entities.stream().filter(entity -> !(entity instanceof Player)).toList();
+        List<Entity> visibleEntities = entities
+                .stream()
+                .filter(entity -> !(entity instanceof Player))
+                .filter(entity -> !arrivingEntities.containsKey(entity))
+                .toList();
+
         int numEntities = visibleEntities.size();
         if (numEntities > 0) {
             sb.append(numEntities > 1 ? "are " : "is ");
@@ -155,15 +168,41 @@ public abstract class Room {
         return sb.toString();
     }
 
-    public final void prime() {
+    public final void preTick() {
         entities.forEach(Entity::prime);
     }
 
     public void tick() {
         entities.forEach(Entity::tick);
+        entities.removeAll(leavingEntities.keySet());
+    }
 
-        this.entities.removeAll(movedEntities);
-        this.movedEntities.clear();
+    public void postTick() {
+        if (hasPlayer()) {
+            arrivingEntities.keySet()
+                    .removeIf(entity -> entity instanceof Player);
+
+            if (!arrivingEntities.isEmpty()) {
+                arrivingEntities.forEach((entity, dir) -> System.out.printf(
+                        "%s enters from the %s.\n",
+                        Text.capitalize(entity.getIndefiniteName()),
+                        Text.blue(dir.name()))
+                );
+                System.out.println();
+            }
+
+            if (!leavingEntities.isEmpty()) {
+                leavingEntities.forEach((entity, dir) -> System.out.printf(
+                        "%s leaves the room, heading %s.\n",
+                        Text.capitalize(entity.getIndefiniteName()),
+                        Text.blue(dir.name()))
+                );
+                System.out.println();
+            }
+        }
+
+        arrivingEntities.clear();
+        leavingEntities.clear();
     }
 
     private List<String> exitStrings() {

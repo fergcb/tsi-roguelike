@@ -16,10 +16,11 @@ import java.util.stream.Collectors;
 public abstract class Actor extends Entity {
     public final Inventory inventory = new Inventory();
 
-    public void moveTo(Room destination) {
-        currentRoom.movedEntities.add(this);
-        destination.entities.add(this);
-        this.currentRoom = destination;
+    public void move(Direction dir) {
+        Room destination = currentRoom.getExit(dir);
+        currentRoom.leavingEntities.put(this, dir);
+        destination.arrivingEntities.put(this, Direction.inverse(dir));
+        destination.addEntity(this);
     }
 
     @Override
@@ -43,8 +44,7 @@ public abstract class Actor extends Entity {
                     return false;
                 }
 
-                Room nextRoom = currentRoom.getExit(dir);
-                moveTo(nextRoom);
+                move(dir);
 
                 return true;
             }

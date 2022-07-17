@@ -1,6 +1,6 @@
 package uk.fergcb.rogue;
 
-import uk.fergcb.rogue.entities.Interactable;
+import uk.fergcb.rogue.entities.Entity;
 import uk.fergcb.rogue.entities.actors.Player;
 import uk.fergcb.rogue.map.Level;
 import uk.fergcb.rogue.map.generation.LevelGenerator;
@@ -47,9 +47,9 @@ public class Main {
             return false;
         }
 
-        Interactable target = interaction.target();
-        if (target != null && target.canInteract(interaction)) {
-            return target.onInteract(interaction);
+        Entity target = interaction.target();
+        if (target != null && target.canReceive(interaction)) {
+            return target.handleInteraction(interaction);
         }
 
         System.err.println("Failed to handle interaction: " + interaction);

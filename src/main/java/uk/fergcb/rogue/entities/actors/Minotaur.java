@@ -26,7 +26,6 @@ public class Minotaur extends Actor {
 
     @Override
     public void doTick() {
-        System.out.println(describe());
         Random random = new Random();
 
         if (currentRoom.entities.stream().anyMatch(entity -> entity instanceof Player)) return;
@@ -35,7 +34,7 @@ public class Minotaur extends Actor {
         Direction direction = directions.get(random.nextInt(directions.size()));
 
         Interaction action = new Interaction(InteractionType.GO, this, this, direction.name());
-        onInteract(action);
+        handleInteraction(action);
     }
 
     @Override

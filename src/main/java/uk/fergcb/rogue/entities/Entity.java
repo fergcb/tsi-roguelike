@@ -1,5 +1,8 @@
 package uk.fergcb.rogue.entities;
 
+import uk.fergcb.rogue.Interaction;
+import uk.fergcb.rogue.InteractionType;
+import uk.fergcb.rogue.Text;
 import uk.fergcb.rogue.map.rooms.Room;
 
 import java.util.AbstractMap;
@@ -53,6 +56,21 @@ public abstract class Entity {
         if (validNames.containsKey(name)) return validNames.get(name);
 
         return -1;
+    }
+
+    public boolean canReceive(Interaction action) {
+        return action.type() == InteractionType.LOOK;
+    }
+
+    public boolean handleInteraction(Interaction action) {
+        if (action.type() == InteractionType.LOOK) {
+            if (action.actor() == this) return true;
+
+            String desc = action.target().describe();
+            System.out.println(Text.italic(Text.grey(desc)));
+        }
+
+        return false;
     }
 
     public final void tick() {

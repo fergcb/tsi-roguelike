@@ -2,12 +2,11 @@ package uk.fergcb.rogue;
 
 import uk.fergcb.rogue.entities.actors.Actor;
 import uk.fergcb.rogue.entities.Entity;
-import uk.fergcb.rogue.entities.Interactable;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-public record Interaction(InteractionType type, Actor actor, Interactable target, String... args) {
+public record Interaction(InteractionType type, Actor actor, Entity target, String... args) {
     public static Interaction fail (String msg) {
         return new Interaction(InteractionType.FAIL, null, null, msg);
     }
@@ -25,7 +24,7 @@ public record Interaction(InteractionType type, Actor actor, Interactable target
     @Override
     public String toString() {
         String act = actor == null ? "NULL" : actor.getName();
-        String tgt = target == null ? "NULL" : (target instanceof Entity ? ((Entity)target).getName() : target.getClass().getSimpleName());
+        String tgt = target == null ? "NULL" : target.getName();
         return String.format("%s(%s), %s -> %s", type.name(), String.join(", ", args), act, tgt);
     }
 }

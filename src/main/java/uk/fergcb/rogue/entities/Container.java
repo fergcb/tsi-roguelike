@@ -10,7 +10,7 @@ import uk.fergcb.rogue.entities.items.Item;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class Container extends Entity implements Interactable {
+public abstract class Container extends Entity {
     public final Inventory inventory;
 
     public boolean contentsIsKnown;
@@ -24,13 +24,14 @@ public abstract class Container extends Entity implements Interactable {
     protected abstract boolean isLocked();
 
     @Override
-    public boolean canInteract(Interaction action) {
-        return action.type() == InteractionType.SEARCH
+    public boolean canReceive(Interaction action) {
+        return super.canReceive(action)
+                || action.type() == InteractionType.SEARCH
                 || action.type() == InteractionType.TAKE;
     }
 
     @Override
-    public boolean onInteract(Interaction action) {
+    public boolean handleInteraction(Interaction action) {
         switch (action.type()) {
             case SEARCH -> {
                 if (isLocked()) System.out.printf("The %s is locked.\n", getName());
@@ -69,7 +70,8 @@ public abstract class Container extends Entity implements Interactable {
                 }
             }
         }
-        return false;
+
+        return super.handleInteraction(action);
     }
 
     protected void printContents() {

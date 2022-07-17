@@ -5,7 +5,6 @@ import uk.fergcb.rogue.InteractionType;
 import uk.fergcb.rogue.Inventory;
 import uk.fergcb.rogue.Text;
 import uk.fergcb.rogue.entities.Entity;
-import uk.fergcb.rogue.entities.Interactable;
 import uk.fergcb.rogue.entities.items.Item;
 import uk.fergcb.rogue.map.Direction;
 import uk.fergcb.rogue.map.rooms.Room;
@@ -14,16 +13,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public abstract class Actor extends Entity implements Interactable {
+public abstract class Actor extends Entity {
     public final Inventory inventory = new Inventory();
-
-    @Override
-    public boolean canInteract(Interaction action) {
-        List<InteractionType> allowed = Arrays.asList(
-                InteractionType.DROP, InteractionType.PICK_UP, InteractionType.GO, InteractionType.LOOK
-        );
-        return allowed.contains(action.type()) && action.target() == this;
-    }
 
     public void moveTo(Room destination) {
         currentRoom.movedEntities.add(this);
@@ -32,7 +23,16 @@ public abstract class Actor extends Entity implements Interactable {
     }
 
     @Override
-    public boolean onInteract(Interaction action) {
+    public boolean canReceive(Interaction action) {
+        List<InteractionType> allowed = Arrays.asList(
+                InteractionType.DROP, InteractionType.PICK_UP, InteractionType.GO, InteractionType.LOOK
+        );
+        return super.canReceive(action)
+                || (allowed.contains(action.type()) && action.target() == this);
+    }
+
+    @Override
+    public boolean handleInteraction(Interaction action) {
         switch (action.type()) {
             case GO -> {
                 String dirString = action.args()[0];
@@ -47,10 +47,6 @@ public abstract class Actor extends Entity implements Interactable {
                 moveTo(nextRoom);
 
                 return true;
-            }
-            case LOOK -> {
-                System.out.print(currentRoom.draw(this));
-                System.out.print(currentRoom.describe());
             }
             case DROP -> {
                 String itemName = action.args()[0];
@@ -76,7 +72,7 @@ public abstract class Actor extends Entity implements Interactable {
                                         + (action.actor() instanceof Player ? " remove " : " removes ")
                                         + item.getDefiniteName()
                                         + " from "
-                                        + ((Entity)action.target()).getDefiniteName()
+                                        + action.target().getDefiniteName()
                         );
                     }
                     return false;
@@ -122,6 +118,6 @@ public abstract class Actor extends Entity implements Interactable {
             }
         }
 
-        return false;
+        return super.handleInteraction(action);
     }
 }

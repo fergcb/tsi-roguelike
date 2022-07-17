@@ -2,7 +2,6 @@ package uk.fergcb.rogue.map.rooms;
 
 import uk.fergcb.rogue.Text;
 import uk.fergcb.rogue.entities.Entity;
-import uk.fergcb.rogue.entities.Interactable;
 import uk.fergcb.rogue.entities.actors.Actor;
 import uk.fergcb.rogue.entities.actors.Player;
 import uk.fergcb.rogue.map.Direction;
@@ -58,19 +57,6 @@ public abstract class Room {
             if (distance == -1) continue;
             if (distance == 0) return List.of(entity);
             matches.add(entity);
-        }
-
-        return matches;
-    }
-
-    public List<Interactable> findInteractableEntity(String name) {
-        List<Interactable> matches = new ArrayList<>();
-        for (Entity entity : this.entities) {
-            if (!(entity instanceof Interactable)) continue;
-            int distance = entity.matchName(name);
-            if (distance == -1) continue;
-            if (distance == 0) return List.of((Interactable) entity);
-            matches.add((Interactable) entity);
         }
 
         return matches;

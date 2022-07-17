@@ -4,24 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4fe50d8b-c0e5-4f38-9b12-ff34f384d4b1" name="Changes" comment="Create actors package">
+    <list default="true" id="4fe50d8b-c0e5-4f38-9b12-ff34f384d4b1" name="Changes" comment="Add the Minotaur">
       <change afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/NewText.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/actors/Minotaur.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/Text.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/Text.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/Cage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/Cage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/Chest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/Chest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/Crate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/Crate.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/actors/Actor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/actors/Actor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/actors/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/actors/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/items/Gem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/items/Gem.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/items/Potion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/items/Potion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/items/Sword.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/items/Sword.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/items/Wand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/items/Wand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/rooms/CageRoom.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/rooms/CageRoom.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/rooms/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/rooms/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/ParseResult.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/ParseResult.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/Parser.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/Parsers.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/Parsers.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/combinators/Choice.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/combinators/Choice.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/combinators/Not.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/combinators/Not.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/combinators/Optional.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/combinators/Optional.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/combinators/Sequence.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/combinators/Sequence.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/combinators/Some.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/combinators/Some.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/commands/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/commands/Command.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/commands/DropCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/commands/DropCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/commands/GoCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/commands/GoCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/commands/LookCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/commands/LookCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/commands/PickUpCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/commands/PickUpCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/commands/SearchCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/commands/SearchCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/commands/TakeCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/commands/TakeCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/tokens/FreeWord.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/tokens/FreeWord.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/tokens/Phrase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/tokens/Phrase.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/tokens/Regex.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/tokens/Regex.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/tokens/Str.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/tokens/Str.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/tokens/WS.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/tokens/WS.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -259,7 +265,21 @@
       <option name="project" value="LOCAL" />
       <updated>1658004354113</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Improve tick &amp; move logic">
+      <created>1658053275112</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1658053275112</updated>
+    </task>
+    <task id="LOCAL-00022" summary="Add the Minotaur">
+      <created>1658053293160</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1658053293160</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -291,16 +311,17 @@
     <MESSAGE value="Add room observations" />
     <MESSAGE value="Add the cage room &amp; improve add link callbacks" />
     <MESSAGE value="Create actors package" />
-    <option name="LAST_COMMIT_MESSAGE" value="Create actors package" />
+    <MESSAGE value="Improve tick &amp; move logic" />
+    <MESSAGE value="Add the Minotaur" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add the Minotaur" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/tokens/WS.java</url>
-          <line>9</line>
-          <option name="timeStamp" value="4" />
-        </line-breakpoint>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.NullPointerException" package="java.lang" />
+          <option name="timeStamp" value="5" />
+        </breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>

@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 import uk.fergcb.rogue.parser.ParseResult;
 import uk.fergcb.rogue.parser.Parser;
 
-public class Str extends Parser<String> {
+public class Str extends Parser {
     private final String text;
 
     public Str(String text) {
@@ -12,7 +12,7 @@ public class Str extends Parser<String> {
     }
 
     @Override
-    public @NotNull ParseResult<String> parse(String input) {
+    public @NotNull ParseResult parse(String input) {
         if (input.startsWith(text)) {
             String rest = input.substring(text.length());
             return ParseResult.match(text, rest);

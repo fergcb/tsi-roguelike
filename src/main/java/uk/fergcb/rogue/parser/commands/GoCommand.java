@@ -18,7 +18,7 @@ import static uk.fergcb.rogue.parser.Parsers.word;
 public class GoCommand extends Command {
     private static final List<String> validDirs = Arrays.asList("NORTH", "EAST", "SOUTH", "WEST");
 
-    private static final Parser<List<String>> parser = Sequence.of(word("go").or(word("move")), phrase);
+    private static final Parser parser = Sequence.of(word("go").or(word("move")), phrase);
 
     @Override
     protected Interaction resolve(String command, List<String> args, Actor actor) {
@@ -31,7 +31,7 @@ public class GoCommand extends Command {
     }
 
     @Override
-    protected ParseResult<List<String>> parse(String input) {
+    protected ParseResult parse(String input) {
         return parser.parse(input);
     }
 }

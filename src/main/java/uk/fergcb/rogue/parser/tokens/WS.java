@@ -4,9 +4,9 @@ import org.jetbrains.annotations.NotNull;
 import uk.fergcb.rogue.parser.ParseResult;
 import uk.fergcb.rogue.parser.Parser;
 
-public class WS extends Parser<String> {
+public class WS extends Parser {
     @Override
-    public @NotNull ParseResult<String> parse(String input) {
+    public @NotNull ParseResult parse(String input) {
         int i = 0;
         while(i < input.length() && Character.isWhitespace(input.charAt(i))) {
             i += 1;

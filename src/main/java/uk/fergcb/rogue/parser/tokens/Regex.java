@@ -7,7 +7,7 @@ import uk.fergcb.rogue.parser.Parser;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Regex extends Parser<String> {
+public class Regex extends Parser {
     private final Pattern pattern;
     private final boolean ignoreTrailingWhitespace;
 
@@ -17,7 +17,7 @@ public class Regex extends Parser<String> {
     }
 
     @Override
-    public @NotNull ParseResult<String> parse(String input) {
+    public @NotNull ParseResult parse(String input) {
         Matcher matcher = pattern.matcher(input);
         if (matcher.find()) {
             String match = matcher.group();

@@ -13,8 +13,8 @@ public class Parsers {
     public static WS ws = new WS();
     public static Phrase phrase = new Phrase();
 
-    public static <U> Optional<U> opt(Parser<U> parser) {
-        return new Optional<>(parser);
+    public static Optional opt(Parser parser) {
+        return new Optional(parser);
     }
 
     public static Str str(String text) {
@@ -26,11 +26,11 @@ public class Parsers {
         return new Regex(regex, true);
     }
 
-    public static Choice<String> strs(String... texts) {
+    public static Choice strs(String... texts) {
         Str[] strParsers = Stream.of(texts)
                 .map(Parsers::str)
                 .toList()
                 .toArray(new Str[0]);
-        return new Choice<>(strParsers);
+        return new Choice(strParsers);
     }
 }

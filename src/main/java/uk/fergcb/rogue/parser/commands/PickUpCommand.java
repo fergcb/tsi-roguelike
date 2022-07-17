@@ -22,7 +22,7 @@ import static uk.fergcb.rogue.parser.Parsers.strs;
 
 public class PickUpCommand extends Command {
 
-    private static final Parser<List<String>> parser = Sequence.of(strs("pick up", "take", "get"), phrase);
+    private static final Parser parser = Sequence.of(strs("pick up", "take", "get"), phrase);
 
     @Override
     protected Interaction resolve(String command, List<String> args, Actor actor) {
@@ -73,7 +73,7 @@ public class PickUpCommand extends Command {
     }
 
     @Override
-    protected ParseResult<List<String>> parse(String input) {
+    protected ParseResult parse(String input) {
         return parser.parse(input);
     }
 }

@@ -13,7 +13,7 @@ import static uk.fergcb.rogue.parser.Parsers.str;
 
 public class LookCommand extends Command {
 
-    Parser<List<String>> parser = Sequence.of(str("look"));
+    Parser parser = Sequence.of(str("look"));
 
     @Override
     protected Interaction resolve(String command, List<String> args, Actor actor) {
@@ -21,7 +21,7 @@ public class LookCommand extends Command {
     }
 
     @Override
-    protected ParseResult<List<String>> parse(String input) {
+    protected ParseResult parse(String input) {
         return parser.parse(input);
     }
 }

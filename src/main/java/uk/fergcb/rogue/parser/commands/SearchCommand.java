@@ -16,7 +16,7 @@ import static uk.fergcb.rogue.parser.Parsers.*;
 
 public class SearchCommand extends Command {
 
-    private static final Parser<List<String>> parser = Sequence.of(strs("search", "look in"), opt(phrase));
+    private static final Parser parser = Sequence.of(strs("search", "look in"), opt(phrase));
 
     @Override
     protected Interaction resolve(String command, List<String> args, Actor actor) {
@@ -47,7 +47,7 @@ public class SearchCommand extends Command {
     }
 
     @Override
-    protected ParseResult<List<String>> parse(String input) {
+    protected ParseResult parse(String input) {
         return parser.parse(input);
     }
 }

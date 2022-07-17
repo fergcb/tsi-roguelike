@@ -7,22 +7,21 @@ import uk.fergcb.rogue.parser.Parser;
 import java.util.Arrays;
 import java.util.List;
 
-public class Choice<T> extends Parser<T> {
+public class Choice extends Parser {
 
-    public final List<Parser<T>> parsers;
+    public final List<Parser> parsers;
 
-    @SafeVarargs
-    public Choice (Parser<T>... parsers) {
+    public Choice (Parser... parsers) {
         if (parsers.length < 2) throw new IllegalArgumentException("Choice combinator must take at least two parsers.");
         this.parsers = Arrays.asList(parsers);
     }
 
     @Override
-    public @NotNull ParseResult<T> parse(String input) {
-        ParseResult<T> result;
+    public @NotNull ParseResult parse(String input) {
+        ParseResult result;
         int i = 0;
         do {
-            Parser<T> parser = parsers.get(i++);
+            Parser parser = parsers.get(i++);
             result = parser.parse(input);
         } while (result.isFail() && i < parsers.size());
 

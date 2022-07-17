@@ -17,7 +17,7 @@ import static uk.fergcb.rogue.parser.Parsers.*;
 
 public class TakeCommand extends Command {
 
-    private static final Parser<List<String>> parser = Sequence.of(strs("take", "get"), phrase, str("from"), phrase);
+    private static final Parser parser = Sequence.of(strs("take", "get"), phrase, str("from"), phrase);
 
     @Override
     protected Interaction resolve(String command, List<String> args, Actor actor) {
@@ -50,7 +50,7 @@ public class TakeCommand extends Command {
     }
 
     @Override
-    protected ParseResult<List<String>> parse(String input) {
+    protected ParseResult parse(String input) {
         return parser.parse(input);
     }
 }

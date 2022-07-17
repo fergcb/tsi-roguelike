@@ -7,19 +7,19 @@ import uk.fergcb.rogue.parser.Parser;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Some<T> extends Parser<List<T>> {
-    private final Parser<T> parser;
+public class Some extends Parser {
+    private final Parser parser;
 
-    public Some(Parser<T> parser) {
+    public Some(Parser parser) {
         this.parser = parser;
     }
 
     @Override
-    public @NotNull ParseResult<List<T>> parse(String input) {
-        List<T> matches = new ArrayList<>();
+    public @NotNull ParseResult parse(String input) {
+        List<Object> matches = new ArrayList<>();
 
         String rest = input;
-        ParseResult<T> result;
+        ParseResult result;
         while (true) {
             result = parser.parse(rest);
             if (result.isFail()) break;

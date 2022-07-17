@@ -17,7 +17,7 @@ import static uk.fergcb.rogue.parser.Parsers.strs;
 
 public class DropCommand extends Command {
 
-    private static final Parser<List<String>> parser = Sequence.of(strs("drop", "discard"), phrase);
+    private static final Parser parser = Sequence.of(strs("drop", "discard"), phrase);
 
     @Override
     protected Interaction resolve(String command, List<String> args, Actor actor) {
@@ -31,7 +31,7 @@ public class DropCommand extends Command {
     }
 
     @Override
-    protected ParseResult<List<String>> parse(String input) {
+    protected ParseResult parse(String input) {
         return parser.parse(input);
     }
 }

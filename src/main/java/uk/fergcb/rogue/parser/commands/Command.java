@@ -11,9 +11,9 @@ import java.util.stream.Collectors;
 public abstract class Command {
 
     public Optional<Interaction> match(String input, Actor actor) {
-        ParseResult<List<String>> result = parse(input);
+        ParseResult result = parse(input);
         if (result.isFail()) return Optional.empty();
-        List<String> parts = result.value();
+        List<String> parts = result.asListOfString();
         String command = String.join("", parts);
         List<String> args = parts
                 .subList(1, parts.size())
@@ -26,5 +26,5 @@ public abstract class Command {
 
     protected abstract Interaction resolve(String command, List<String> args, Actor actor);
 
-    protected abstract ParseResult<List<String>> parse(String input);
+    protected abstract ParseResult parse(String input);
 }

@@ -122,10 +122,10 @@ public abstract class Actor extends Entity {
                 actor.message(msg);
             }
             case ATTACK -> {
-                Entity target = action.target();
+                Actor target = (Actor)action.target();
                 String src = (String)action.args()[0];
                 int dmg = (int)action.args()[1];
-                hitPoints -= dmg;
+                target.hitPoints -= dmg;
                 String msg = String.format(
                         "%s hit %s with %s %s.",
                         Text.capitalize(actor.getDefiniteName()),

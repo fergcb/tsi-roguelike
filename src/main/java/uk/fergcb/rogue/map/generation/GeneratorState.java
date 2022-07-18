@@ -13,6 +13,8 @@ public class GeneratorState {
     public final Map<Point, Room> generated;
     public final Stack<Point> toExpand;
 
+    public int shrineCount;
+
     public GeneratorState(int width, int height) {
         this.width = width;
         this.height = height;

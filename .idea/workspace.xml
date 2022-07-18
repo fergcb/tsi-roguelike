@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4fe50d8b-c0e5-4f38-9b12-ff34f384d4b1" name="Changes" comment="Add Attack command">
+    <list default="true" id="4fe50d8b-c0e5-4f38-9b12-ff34f384d4b1" name="Changes" comment="Implement Actor death.">
+      <change afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/enitity/Shrine.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/room/ShrineRoom.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/enitity/actor/Actor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/enitity/actor/Actor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/enitity/actor/Minotaur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/enitity/actor/Minotaur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/room/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/room/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/generation/GeneratorState.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/generation/GeneratorState.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/generation/LevelGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/generation/LevelGenerator.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,8 +25,8 @@
       <list>
         <option value="Record" />
         <option value="Enum" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -359,7 +360,28 @@
       <option name="project" value="LOCAL" />
       <updated>1658142275284</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Fix: specify target in attack handler">
+      <created>1658145689284</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1658145689284</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Add Interaction::handle method.">
+      <created>1658145775230</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1658145775230</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Implement Actor death.">
+      <created>1658145799492</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1658145799492</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -374,9 +396,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Propagate game ticks" />
-    <MESSAGE value="Fix: error thrown choosing adjacent room when there are no rules" />
-    <MESSAGE value="Improve entity current room tracking, Room::addEntity" />
     <MESSAGE value="Fix: duplicate article in hallway names" />
     <MESSAGE value="Add gems, potions and storage rooms" />
     <MESSAGE value="Allow noun synonyms and clarify ambiguous noun phrases" />
@@ -399,7 +418,10 @@
     <MESSAGE value="Support delayed messages to Entities" />
     <MESSAGE value="Add minotaur attacks" />
     <MESSAGE value="Add Attack command" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add Attack command" />
+    <MESSAGE value="Fix: specify target in attack handler" />
+    <MESSAGE value="Add Interaction::handle method." />
+    <MESSAGE value="Implement Actor death." />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement Actor death." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

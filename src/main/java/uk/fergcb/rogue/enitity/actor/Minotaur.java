@@ -4,6 +4,7 @@ import uk.fergcb.rogue.Interaction;
 import uk.fergcb.rogue.InteractionType;
 import uk.fergcb.rogue.Text;
 import uk.fergcb.rogue.map.Direction;
+import uk.fergcb.rogue.map.room.ShrineRoom;
 
 import java.util.List;
 import java.util.Random;
@@ -55,6 +56,8 @@ public class Minotaur extends Actor {
             if (direction == null) {
                 direction = directions.get(random.nextInt(directions.size()));
             }
+
+            if (currentRoom.getExit(direction) instanceof ShrineRoom) return;
 
             action = new Interaction(InteractionType.GO, this, this, direction.name());
         }

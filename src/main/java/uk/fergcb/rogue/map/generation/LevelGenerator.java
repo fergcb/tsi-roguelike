@@ -31,29 +31,47 @@ public class LevelGenerator {
      */
     private void buildIndex() {
         // A starter room always has a hallway to the east and nothing else
-        index.addRule(StarterRoom.class, HorizontalHallway.class, 100, Direction.EAST);
+        index.addRule(StarterRoom.class, ShrineRoom.class, 100, Direction.EAST);
         index.addRule(StarterRoom.class, null, 100, Direction.NORTH, Direction.SOUTH, Direction.WEST);
 
         // Empty rooms can neighbour other rooms, and hallways
         index.addRule(EmptyRoom.class, EmptyRoom.class, 20, Direction.values());
-        index.addRule(EmptyRoom.class, StorageRoom.class, 5, Direction.values());
+        index.addRule(EmptyRoom.class, StorageRoom.class, 8, Direction.values());
+        index.addRule(EmptyRoom.class, ShrineRoom.class, 3, Direction.values())
+                .when((point, state) -> state.shrineCount < 2)
+                .then(((room, state) -> state.shrineCount++));
         index.addRule(EmptyRoom.class, HorizontalHallway.class, 40, Direction.EAST, Direction.WEST)
                 .when((point, state) -> point.x > 0 && point.x < state.width - 1);
         index.addRule(EmptyRoom.class, VerticalHallway.class, 40, Direction.NORTH, Direction.SOUTH)
                 .when((point, state) -> point.y > 0 && point.y < state.height - 1);
         index.addRule(EmptyRoom.class, null, 40, Direction.values());
 
+        // Shrine rooms can neighbour other rooms and hallways
+        index.addRule(ShrineRoom.class, EmptyRoom.class, 10, Direction.values());
+        index.addRule(ShrineRoom.class, StorageRoom.class, 5, Direction.values());
+        index.addRule(ShrineRoom.class, HorizontalHallway.class, 60, Direction.EAST, Direction.WEST)
+                .when((point, state) -> point.x > 0 && point.x < state.width - 1);
+        index.addRule(ShrineRoom.class, VerticalHallway.class, 60, Direction.NORTH, Direction.SOUTH)
+                .when((point, state) -> point.y > 0 && point.y < state.height - 1);
+        index.addRule(ShrineRoom.class, null, 40, Direction.values());
+
         // Horizontal hallways may only join other rooms to the east and west
         index.addRule(HorizontalHallway.class, HorizontalHallway.class, 30, Direction.EAST, Direction.WEST)
                 .when((point, state) -> point.x > 0 && point.x < state.width - 1);
         index.addRule(HorizontalHallway.class, EmptyRoom.class, 60, Direction.EAST, Direction.WEST);
-        index.addRule(HorizontalHallway.class, StorageRoom.class, 10, Direction.EAST, Direction.WEST);
+        index.addRule(HorizontalHallway.class, StorageRoom.class, 15, Direction.EAST, Direction.WEST);
+        index.addRule(HorizontalHallway.class, ShrineRoom.class, 5, Direction.EAST, Direction.WEST)
+                .when((point, state) -> state.shrineCount < 2)
+                .then(((room, state) -> state.shrineCount++));
 
         // Vertical hallways may only join other rooms to the north and south
         index.addRule(VerticalHallway.class, VerticalHallway.class, 30, Direction.NORTH, Direction.SOUTH)
                 .when((point, state) -> point.y > 0 && point.y < state.height - 1);
         index.addRule(VerticalHallway.class, EmptyRoom.class, 60, Direction.NORTH, Direction.SOUTH);
-        index.addRule(VerticalHallway.class, StorageRoom.class, 10, Direction.NORTH, Direction.SOUTH);
+        index.addRule(VerticalHallway.class, StorageRoom.class, 15, Direction.NORTH, Direction.SOUTH);
+        index.addRule(VerticalHallway.class, ShrineRoom.class, 5, Direction.NORTH, Direction.SOUTH)
+                .when((point, state) -> state.shrineCount < 2)
+                .then(((room, state) -> state.shrineCount++));
     }
 
     /**
@@ -110,6 +128,7 @@ public class LevelGenerator {
      * @param state The current state of the generator
      */
     private void expand(Point currentPoint, GeneratorState state) {
+        Random random = new Random();
         Room currentRoom = state.generated.get(currentPoint);
 
         for (Direction direction : Direction.values()) {
@@ -121,7 +140,8 @@ public class LevelGenerator {
             if (state.generated.containsKey(nextPoint)) {
                 Room existingNeighbour = state.generated.get(nextPoint);
                 if (index.isAllowed(currentRoom.getClass(), existingNeighbour.getClass(), direction, nextPoint, state)) {
-                    currentRoom.attach(direction, existingNeighbour);
+                    if (random.nextInt() == 1)
+                        currentRoom.attach(direction, existingNeighbour);
                 }
                 continue;
             }
@@ -164,19 +184,24 @@ public class LevelGenerator {
     private void insertCageRoom(Room starterRoom) {
         Random random = new Random();
 
-        Room current = starterRoom;
-        Stack<Room> path = new Stack<>();
+        Room current;
+        final Stack<Room> path = new Stack<>();
 
-        while (current.exits.size() > 0) {
-            path.add(current);
-            List<Room> exits = current.exits.keySet()
-                    .stream()
-                    .map(current::getExit)
-                    .filter(room -> !path.contains(room))
-                    .toList();
-            if (exits.size() == 0) break;
-            current = exits.get(random.nextInt(exits.size()));
-        }
+        do {
+            current = starterRoom;
+            path.clear();
+
+            while (current.exits.size() > 0) {
+                path.add(current);
+                List<Room> exits = current.exits.keySet()
+                        .stream()
+                        .map(current::getExit)
+                        .filter(room -> !path.contains(room))
+                        .toList();
+                if (exits.size() == 0) break;
+                current = exits.get(random.nextInt(exits.size()));
+            }
+        } while (path.size() < 10);
 
         Room cageRoom = new CageRoom(current.x, current.y);
 

@@ -37,7 +37,17 @@ public class Minotaur extends Actor {
         if (currentRoom.hasPlayer()) return;
 
         List<Direction> directions = currentRoom.exits.keySet().stream().toList();
-        Direction direction = directions.get(random.nextInt(directions.size()));
+        Direction direction = null;
+        for (Direction dir : directions) {
+            if (currentRoom.getExit(dir).hasPlayer()) {
+                direction = dir;
+                break;
+            }
+        }
+
+        if (direction == null) {
+            direction = directions.get(random.nextInt(directions.size()));
+        }
 
         Interaction action = new Interaction(InteractionType.GO, this, this, direction.name());
         handleInteraction(action);

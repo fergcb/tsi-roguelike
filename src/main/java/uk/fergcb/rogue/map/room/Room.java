@@ -194,21 +194,21 @@ public abstract class Room {
                     .removeIf(player::equals);
 
             if (!arrivingEntities.isEmpty()) {
-                arrivingEntities.forEach((entity, dir) -> player.messagef(
+                arrivingEntities.forEach((entity, dir) -> player.messageNowf(
                         "%s enters from the %s.\n",
                         Text.capitalize(entity.getIndefiniteName()),
                         Text.blue(dir.name()))
                 );
-                player.message("");
+                player.messageNow("");
             }
 
             if (!leavingEntities.isEmpty()) {
-                leavingEntities.forEach((entity, dir) -> player.messagef(
+                leavingEntities.forEach((entity, dir) -> player.messageNowf(
                         "%s leaves the room, heading %s.\n",
                         Text.capitalize(entity.getIndefiniteName()),
                         Text.blue(dir.name()))
                 );
-                player.message("");
+                player.messageNow("");
             }
         }
 

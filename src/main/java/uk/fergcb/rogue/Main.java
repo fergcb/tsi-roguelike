@@ -23,8 +23,8 @@ public class Main {
         Player player = new Player();
         room.addEntity(player);
 
-        player.message(player.currentRoom.draw(player));
-        player.message(player.currentRoom.describe());
+        player.messageNow(player.currentRoom.draw(player));
+        player.messageNow(player.currentRoom.describe());
 
         boolean gameOver = false;
         while (!gameOver) {
@@ -35,8 +35,8 @@ public class Main {
             level.roomStream().forEachOrdered(Room::tick);
 
             if (shouldDraw) {
-                player.message("\n" + player.currentRoom.draw(player));
-                player.message(player.currentRoom.describe());
+                player.messageNow("\n" + player.currentRoom.draw(player));
+                player.messageNow(player.currentRoom.describe());
             }
 
             level.roomStream().forEachOrdered(Room::postTick);
@@ -46,7 +46,8 @@ public class Main {
     private static boolean handleInteraction(Interaction interaction) {
         // System.out.println(interaction);
         if (interaction.type() == InteractionType.FAIL || interaction.type() == InteractionType.CLARIFY) {
-            interaction.actor().message(interaction.args()[0]);
+            String msg = (String)(interaction.args()[0]);
+            interaction.actor().message(msg);
             return false;
         }
 

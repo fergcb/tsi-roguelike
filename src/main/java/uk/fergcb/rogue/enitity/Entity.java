@@ -93,8 +93,13 @@ public abstract class Entity {
 
     public void message(String message) {}
 
+    public void messageNow(String message) {}
+
     public void messagef(String format, Object... args) {
         message(String.format(format, args));
+    }
+    public void messageNowf(String format, Object... args) {
+        messageNow(String.format(format, args));
     }
 
     public abstract String getName();

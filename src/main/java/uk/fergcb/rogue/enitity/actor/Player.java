@@ -2,7 +2,12 @@ package uk.fergcb.rogue.enitity.actor;
 
 import uk.fergcb.rogue.Text;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class Player extends Actor {
+
+    private final Queue<String> messageQueue = new LinkedList<>();
 
     @Override
     public String getName() {
@@ -30,6 +35,16 @@ public class Player extends Actor {
     }
 
     public void message(String message) {
+        messageQueue.add(message);
+    }
+
+    public void messageNow(String message) {
         System.out.println(message);
+    }
+
+    @Override
+    public void doPostTick() {
+        messageQueue.forEach(this::messageNow);
+        messageQueue.clear();
     }
 }

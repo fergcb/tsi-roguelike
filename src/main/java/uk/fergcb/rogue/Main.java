@@ -16,7 +16,7 @@ public class Main {
     }
 
     private static void start() {
-        LevelGenerator gen = new LevelGenerator(5, 5);
+        LevelGenerator gen = new LevelGenerator(16, 16);
         Level level = gen.generateLevel();
         Room room = level.startRoom();
 

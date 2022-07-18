@@ -16,6 +16,8 @@ import java.util.stream.Collectors;
 public abstract class Actor extends Entity {
     public final Inventory inventory = new Inventory();
 
+    protected int hitPoints;
+
     public void move(Direction dir) {
         Room destination = currentRoom.getExit(dir);
         currentRoom.leavingEntities.put(this, dir);
@@ -26,7 +28,8 @@ public abstract class Actor extends Entity {
     @Override
     public boolean canReceive(Interaction action) {
         List<InteractionType> allowed = Arrays.asList(
-                InteractionType.DROP, InteractionType.PICK_UP, InteractionType.GO, InteractionType.LOOK
+                InteractionType.DROP, InteractionType.PICK_UP, InteractionType.GO,
+                InteractionType.LOOK, InteractionType.ATTACK
         );
         return super.canReceive(action)
                 || (allowed.contains(action.type()) && action.target() == this);
@@ -102,7 +105,7 @@ public abstract class Actor extends Entity {
                         return false;
                     }
                     currentRoom.entities.remove(item);
-                    inventory.add(item);
+                    actor.inventory.add(item);
                     actor.message(
                             Text.capitalize(actor.getDefiniteName())
                                     + (actor instanceof Player ? " pick up " : " picks up ")
@@ -117,6 +120,19 @@ public abstract class Actor extends Entity {
                         .map(item -> "  " + Text.capitalize(item.getDefiniteName()))
                         .collect(Collectors.joining("\n"));
                 actor.message(msg);
+            }
+            case ATTACK -> {
+                Entity target = action.target();
+                String src = (String)action.args()[0];
+                int dmg = (int)action.args()[1];
+                hitPoints -= dmg;
+                target.messagef(
+                        "%s hit %s with %s for %d damage.",
+                        Text.capitalize(actor.getDefiniteName()),
+                        target.getDefiniteName(),
+                        src,
+                        dmg
+                );
             }
         }
 

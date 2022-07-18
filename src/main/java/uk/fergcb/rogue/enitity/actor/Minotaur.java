@@ -10,6 +10,10 @@ import java.util.Random;
 
 public class Minotaur extends Actor {
 
+    public Minotaur() {
+        this.hitPoints = 200;
+    }
+
     @Override
     public String getName() {
         return Text.red("MINOTAUR");
@@ -32,24 +36,30 @@ public class Minotaur extends Actor {
     @Override
     public void doTick() {
         Random random = new Random();
+        Interaction action;
 
         // TODO: attack & follow the player
-        if (currentRoom.hasPlayer()) return;
-
-        List<Direction> directions = currentRoom.exits.keySet().stream().toList();
-        Direction direction = null;
-        for (Direction dir : directions) {
-            if (currentRoom.getExit(dir).hasPlayer()) {
-                direction = dir;
-                break;
+        if (currentRoom.hasPlayer()) {
+            int dmg = random.nextInt(10);
+            String weapon = "it's " + Text.yellow("HORNS");
+            action = new Interaction(InteractionType.ATTACK, this, currentRoom.getPlayer(), weapon, dmg);
+        } else {
+            List<Direction> directions = currentRoom.exits.keySet().stream().toList();
+            Direction direction = null;
+            for (Direction dir : directions) {
+                if (currentRoom.getExit(dir).hasPlayer()) {
+                    direction = dir;
+                    break;
+                }
             }
+
+            if (direction == null) {
+                direction = directions.get(random.nextInt(directions.size()));
+            }
+
+            action = new Interaction(InteractionType.GO, this, this, direction.name());
         }
 
-        if (direction == null) {
-            direction = directions.get(random.nextInt(directions.size()));
-        }
-
-        Interaction action = new Interaction(InteractionType.GO, this, this, direction.name());
         handleInteraction(action);
     }
 }

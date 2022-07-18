@@ -9,6 +9,10 @@ public class Player extends Actor {
 
     private final Queue<String> messageQueue = new LinkedList<>();
 
+    public Player () {
+        this.hitPoints = 20;
+    }
+
     @Override
     public String getName() {
         return "you";

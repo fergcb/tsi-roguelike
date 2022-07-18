@@ -4,8 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4fe50d8b-c0e5-4f38-9b12-ff34f384d4b1" name="Changes" comment="Ensure all Interactions have an actor">
+    <list default="true" id="4fe50d8b-c0e5-4f38-9b12-ff34f384d4b1" name="Changes" comment="Make minotaur follow player">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/Interaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/Interaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/InteractionType.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/InteractionType.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/enitity/Container.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/enitity/Container.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/enitity/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/enitity/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/enitity/actor/Actor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/enitity/actor/Actor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/enitity/actor/Minotaur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/enitity/actor/Minotaur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/enitity/actor/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/enitity/actor/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/room/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/room/Room.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -313,7 +322,21 @@
       <option name="project" value="LOCAL" />
       <updated>1658133888236</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Ensure all Interactions have an actor">
+      <created>1658136068549</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1658136068549</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Make minotaur follow player">
+      <created>1658136232269</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1658136232269</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -328,8 +351,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Fix: Game loop not updating room on player move" />
-    <MESSAGE value="Add combinatory parsing system for interactions" />
     <MESSAGE value="Add level generation&#10;&#10;As a byproduct, the way directions are handled has been improved." />
     <MESSAGE value="Allow links to be validated with additional logic" />
     <MESSAGE value="Add room iterator for levels" />
@@ -353,7 +374,9 @@
     <MESSAGE value="Organise Entity methods &amp; tick logic" />
     <MESSAGE value="Replace System.out.println with entity messages" />
     <MESSAGE value="Move Inventory class to entities package" />
-    <option name="LAST_COMMIT_MESSAGE" value="Move Inventory class to entities package" />
+    <MESSAGE value="Ensure all Interactions have an actor" />
+    <MESSAGE value="Make minotaur follow player" />
+    <option name="LAST_COMMIT_MESSAGE" value="Make minotaur follow player" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

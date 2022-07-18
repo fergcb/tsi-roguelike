@@ -38,7 +38,6 @@ public class Minotaur extends Actor {
         Random random = new Random();
         Interaction action;
 
-        // TODO: attack & follow the player
         if (currentRoom.hasPlayer()) {
             int dmg = random.nextInt(10);
             String weapon = "it's " + Text.yellow("HORNS");
@@ -60,6 +59,6 @@ public class Minotaur extends Actor {
             action = new Interaction(InteractionType.GO, this, this, direction.name());
         }
 
-        handleInteraction(action);
+        action.handle();
     }
 }

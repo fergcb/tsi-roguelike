@@ -29,4 +29,8 @@ public record Interaction(InteractionType type, Actor actor, Entity target, Obje
         String argString = Arrays.stream(args).map(Object::toString).collect(Collectors.joining(", "));
         return String.format("%s(%s), %s -> %s", type.name(), argString, act, tgt);
     }
+
+    public boolean handle() {
+        return this.target.handleInteraction(this);
+    }
 }

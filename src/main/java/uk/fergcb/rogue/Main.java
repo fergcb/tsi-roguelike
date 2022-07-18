@@ -53,7 +53,7 @@ public class Main {
 
         Entity target = interaction.target();
         if (target != null && target.canReceive(interaction)) {
-            return target.handleInteraction(interaction);
+            return interaction.handle();
         }
 
         System.err.println("Failed to handle interaction: " + interaction);

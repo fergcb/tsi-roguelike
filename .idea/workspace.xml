@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4fe50d8b-c0e5-4f38-9b12-ff34f384d4b1" name="Changes" comment="Add minotaur attacks">
-      <change afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/enitity/item/Weapon.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/command/AttackCommand.java" afterDir="false" />
+    <list default="true" id="4fe50d8b-c0e5-4f38-9b12-ff34f384d4b1" name="Changes" comment="Add Attack command">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/enitity/actor/Actor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/enitity/actor/Actor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/enitity/item/Sword.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/enitity/item/Sword.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/InputScanner.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/parser/InputScanner.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/enitity/actor/Minotaur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/enitity/actor/Minotaur.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/room/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/room/Room.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -353,7 +352,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658140163011</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Add Attack command">
+      <created>1658142275284</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1658142275284</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -368,7 +374,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Add room stream for levels" />
     <MESSAGE value="Propagate game ticks" />
     <MESSAGE value="Fix: error thrown choosing adjacent room when there are no rules" />
     <MESSAGE value="Improve entity current room tracking, Room::addEntity" />
@@ -393,7 +398,8 @@
     <MESSAGE value="Allow interactions to take non-String args" />
     <MESSAGE value="Support delayed messages to Entities" />
     <MESSAGE value="Add minotaur attacks" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add minotaur attacks" />
+    <MESSAGE value="Add Attack command" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Attack command" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

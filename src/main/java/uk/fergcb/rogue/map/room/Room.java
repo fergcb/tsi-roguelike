@@ -187,6 +187,8 @@ public abstract class Room {
     public void postTick() {
         entities.forEach(Entity::postTick);
 
+        entities.removeIf(entity -> entity instanceof Actor actor && actor.isDead());
+
         if (hasPlayer()) {
             Player player = getPlayer();
 

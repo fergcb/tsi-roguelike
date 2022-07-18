@@ -18,6 +18,10 @@ public abstract class Actor extends Entity {
 
     protected int hitPoints;
 
+    public boolean isDead () {
+        return this.hitPoints <= 0;
+    }
+
     public void move(Direction dir) {
         Room destination = currentRoom.getExit(dir);
         currentRoom.leavingEntities.put(this, dir);

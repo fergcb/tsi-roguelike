@@ -26,8 +26,7 @@ public class Main {
         player.messageNow(player.currentRoom.draw(player));
         player.messageNow(player.currentRoom.describe());
 
-        boolean gameOver = false;
-        while (!gameOver) {
+        while (!player.isDead()) {
             Interaction action = input.nextInteraction(player);
             boolean shouldDraw = handleInteraction(action);
 
@@ -41,6 +40,8 @@ public class Main {
 
             level.roomStream().forEachOrdered(Room::postTick);
         }
+
+        player.messageNow(Text.red("\nYou died.\n"));
     }
 
     private static boolean handleInteraction(Interaction interaction) {

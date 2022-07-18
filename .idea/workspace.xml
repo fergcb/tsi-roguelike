@@ -4,12 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4fe50d8b-c0e5-4f38-9b12-ff34f384d4b1" name="Changes" comment="Organise Entity methods &amp; tick logic">
-      <change afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/NewText.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/actors/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/actors/Player.java" afterDir="false" />
-    </list>
+    <list default="true" id="4fe50d8b-c0e5-4f38-9b12-ff34f384d4b1" name="Changes" comment="Move Inventory class to entities package" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -302,7 +297,21 @@
       <option name="project" value="LOCAL" />
       <updated>1658132501447</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Replace System.out.println with entity messages">
+      <created>1658133729871</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1658133729871</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Move Inventory class to entities package">
+      <created>1658133888236</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1658133888236</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -317,8 +326,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Initial commit." />
-    <MESSAGE value="Fix: Actors disallow GO, LOOK interactions" />
     <MESSAGE value="Fix: Game loop not updating room on player move" />
     <MESSAGE value="Add combinatory parsing system for interactions" />
     <MESSAGE value="Add level generation&#10;&#10;As a byproduct, the way directions are handled has been improved." />
@@ -342,7 +349,9 @@
     <MESSAGE value="Add &quot;at&quot; clause to LOOK command" />
     <MESSAGE value="Announce entities moving into/out of player room" />
     <MESSAGE value="Organise Entity methods &amp; tick logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="Organise Entity methods &amp; tick logic" />
+    <MESSAGE value="Replace System.out.println with entity messages" />
+    <MESSAGE value="Move Inventory class to entities package" />
+    <option name="LAST_COMMIT_MESSAGE" value="Move Inventory class to entities package" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

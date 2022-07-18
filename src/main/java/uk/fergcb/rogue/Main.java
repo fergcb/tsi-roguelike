@@ -1,10 +1,10 @@
 package uk.fergcb.rogue;
 
-import uk.fergcb.rogue.entities.Entity;
-import uk.fergcb.rogue.entities.actors.Player;
+import uk.fergcb.rogue.enitity.Entity;
+import uk.fergcb.rogue.enitity.actor.Player;
 import uk.fergcb.rogue.map.Level;
 import uk.fergcb.rogue.map.generation.LevelGenerator;
-import uk.fergcb.rogue.map.rooms.Room;
+import uk.fergcb.rogue.map.room.Room;
 import uk.fergcb.rogue.parser.InputScanner;
 
 public class Main {

@@ -1,6 +1,6 @@
 package uk.fergcb.rogue.map;
 
-import uk.fergcb.rogue.map.rooms.Room;
+import uk.fergcb.rogue.map.room.Room;
 
 import java.util.ArrayList;
 import java.util.Iterator;

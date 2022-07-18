@@ -1,7 +1,7 @@
 package uk.fergcb.rogue;
 
-import uk.fergcb.rogue.entities.actors.Actor;
-import uk.fergcb.rogue.entities.Entity;
+import uk.fergcb.rogue.enitity.actor.Actor;
+import uk.fergcb.rogue.enitity.Entity;
 
 import java.util.List;
 import java.util.stream.Collectors;

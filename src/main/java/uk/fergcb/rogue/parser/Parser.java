@@ -2,9 +2,9 @@ package uk.fergcb.rogue.parser;
 
 
 import org.jetbrains.annotations.NotNull;
-import uk.fergcb.rogue.parser.combinators.Choice;
-import uk.fergcb.rogue.parser.combinators.Not;
-import uk.fergcb.rogue.parser.combinators.Sequence;
+import uk.fergcb.rogue.parser.combinator.Choice;
+import uk.fergcb.rogue.parser.combinator.Not;
+import uk.fergcb.rogue.parser.combinator.Sequence;
 
 public abstract class Parser {
     public abstract @NotNull ParseResult parse(String input);

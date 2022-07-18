@@ -2,7 +2,7 @@ package uk.fergcb.rogue.map.generation;
 
 import uk.fergcb.rogue.map.Direction;
 import uk.fergcb.rogue.map.Level;
-import uk.fergcb.rogue.map.rooms.*;
+import uk.fergcb.rogue.map.room.*;
 
 import java.awt.*;
 import java.lang.reflect.InvocationTargetException;

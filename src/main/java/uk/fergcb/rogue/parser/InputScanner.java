@@ -2,8 +2,8 @@ package uk.fergcb.rogue.parser;
 
 import uk.fergcb.rogue.Interaction;
 import uk.fergcb.rogue.Text;
-import uk.fergcb.rogue.entities.actors.Player;
-import uk.fergcb.rogue.parser.commands.*;
+import uk.fergcb.rogue.enitity.actor.Player;
+import uk.fergcb.rogue.parser.command.*;
 
 import java.util.Arrays;
 import java.util.List;

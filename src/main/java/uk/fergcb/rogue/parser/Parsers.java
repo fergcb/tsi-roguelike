@@ -1,11 +1,11 @@
 package uk.fergcb.rogue.parser;
 
-import uk.fergcb.rogue.parser.combinators.Choice;
-import uk.fergcb.rogue.parser.combinators.Optional;
-import uk.fergcb.rogue.parser.tokens.Phrase;
-import uk.fergcb.rogue.parser.tokens.Regex;
-import uk.fergcb.rogue.parser.tokens.Str;
-import uk.fergcb.rogue.parser.tokens.WS;
+import uk.fergcb.rogue.parser.combinator.Choice;
+import uk.fergcb.rogue.parser.combinator.Optional;
+import uk.fergcb.rogue.parser.token.Phrase;
+import uk.fergcb.rogue.parser.token.Regex;
+import uk.fergcb.rogue.parser.token.Str;
+import uk.fergcb.rogue.parser.token.WS;
 
 import java.util.stream.Stream;
 

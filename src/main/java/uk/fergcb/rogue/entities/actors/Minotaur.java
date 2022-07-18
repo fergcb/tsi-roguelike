@@ -9,6 +9,11 @@ import java.util.List;
 import java.util.Random;
 
 public class Minotaur extends Actor {
+
+    @Override
+    public String getName() {
+        return Text.red("MINOTAUR");
+    }
     @Override
     public String describe() {
         return """
@@ -20,8 +25,8 @@ public class Minotaur extends Actor {
     }
 
     @Override
-    public String getName() {
-        return Text.red("MINOTAUR");
+    public String draw() {
+        return Text.red("Ŏ");
     }
 
     @Override
@@ -36,10 +41,5 @@ public class Minotaur extends Actor {
 
         Interaction action = new Interaction(InteractionType.GO, this, this, direction.name());
         handleInteraction(action);
-    }
-
-    @Override
-    public String draw() {
-        return Text.red("Ŏ");
     }
 }

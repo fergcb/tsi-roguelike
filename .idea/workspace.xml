@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4fe50d8b-c0e5-4f38-9b12-ff34f384d4b1" name="Changes" comment="Add &quot;at&quot; clause to LOOK command">
+    <list default="true" id="4fe50d8b-c0e5-4f38-9b12-ff34f384d4b1" name="Changes" comment="">
       <change afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/NewText.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/actors/Actor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/actors/Actor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/Entity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/actors/Minotaur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/actors/Minotaur.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/rooms/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/rooms/Room.java" afterDir="false" />
     </list>
@@ -45,14 +44,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "settings.editor.selected.configurable": "configurable.group.editor"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.editor&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="uk.fergcb.rogue.map" />
@@ -290,7 +289,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658070577238</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Announce entities moving into/out of player room">
+      <created>1658096441588</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1658096441588</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -328,7 +334,8 @@
     <MESSAGE value="Add entity descriptions" />
     <MESSAGE value="Make all entities interactable" />
     <MESSAGE value="Add &quot;at&quot; clause to LOOK command" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add &quot;at&quot; clause to LOOK command" />
+    <MESSAGE value="Announce entities moving into/out of player room" />
+    <option name="LAST_COMMIT_MESSAGE" value="Announce entities moving into/out of player room" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

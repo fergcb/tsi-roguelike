@@ -73,18 +73,25 @@ public abstract class Entity {
         return false;
     }
 
+    public final void preTick() {
+        hasTicked = false;
+        doPreTick();
+    }
+
     public final void tick() {
         if (hasTicked) return;
         this.doTick();
         hasTicked = true;
     }
 
-    public final void prime() {
-        hasTicked = false;
+    public final void postTick() {
+        doPostTick();
     }
+    protected void doPreTick() {}
+    protected void doTick() {}
+    protected void doPostTick() {}
 
-    public abstract String describe();
     public abstract String getName();
-    public abstract void doTick();
+    public abstract String describe();
     public abstract String draw();
 }

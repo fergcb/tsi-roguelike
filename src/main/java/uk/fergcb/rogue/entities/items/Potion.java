@@ -30,9 +30,6 @@ public class Potion extends Item {
     }
 
     @Override
-    public void doTick() {}
-
-    @Override
     public String draw() {
         return color.colorize.apply("b");
     }

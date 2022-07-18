@@ -5,6 +5,11 @@ import uk.fergcb.rogue.Text;
 public class Crate extends Container {
 
     @Override
+    public String getName() {
+        return Text.yellow("CRATE");
+    }
+
+    @Override
     public String describe() {
         return """
                 The crate is made of rough wooden slats.
@@ -13,20 +18,12 @@ public class Crate extends Container {
     }
 
     @Override
-    public String getName() {
-        return Text.yellow("CRATE");
+    public String draw() {
+        return Text.yellow("■");
     }
-
-    @Override
-    public void doTick() {}
 
     @Override
     protected boolean isLocked() {
         return false;
-    }
-
-    @Override
-    public String draw() {
-        return Text.yellow("■");
     }
 }

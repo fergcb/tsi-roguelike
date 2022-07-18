@@ -3,6 +3,10 @@ package uk.fergcb.rogue.entities.items;
 import uk.fergcb.rogue.Text;
 
 public class Sword extends Item {
+    @Override
+    public String getName() {
+        return Text.cyan("SWORD");
+    }
 
     @Override
     public String describe() {
@@ -11,13 +15,6 @@ public class Sword extends Item {
                 but it looks like it could do some damage.
                 """;
     }
-    @Override
-    public String getName() {
-        return Text.cyan("SWORD");
-    }
-
-    @Override
-    public void doTick() {}
 
     @Override
     public String draw() {

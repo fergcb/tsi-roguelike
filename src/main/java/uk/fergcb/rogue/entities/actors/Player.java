@@ -25,9 +25,6 @@ public class Player extends Actor {
     }
 
     @Override
-    public void doTick() { }
-
-    @Override
     public String draw() {
         return Text.white("@");
     }

@@ -169,7 +169,7 @@ public abstract class Room {
     }
 
     public final void preTick() {
-        entities.forEach(Entity::prime);
+        entities.forEach(Entity::preTick);
     }
 
     public void tick() {
@@ -178,6 +178,8 @@ public abstract class Room {
     }
 
     public void postTick() {
+        entities.forEach(Entity::postTick);
+
         if (hasPlayer()) {
             arrivingEntities.keySet()
                     .removeIf(entity -> entity instanceof Player);

@@ -21,23 +21,20 @@ public class Gem extends Item {
     }
 
     @Override
-    public Map<String, Integer> getValidNames() {
-        Map<String, Integer> validNames = super.getValidNames();
-        validNames.put(type.name(), 5);
-        validNames.put("GEM", 10);
-        return validNames;
-    }
-
-    @Override
     public String describe() {
         return Text.capitalize(getDefiniteName()) + ".";
     }
 
     @Override
-    public void doTick() {}
-
-    @Override
     public String draw() {
         return type.colorize.apply("◆");
+    }
+
+    @Override
+    public Map<String, Integer> getValidNames() {
+        Map<String, Integer> validNames = super.getValidNames();
+        validNames.put(type.name(), 5);
+        validNames.put("GEM", 10);
+        return validNames;
     }
 }

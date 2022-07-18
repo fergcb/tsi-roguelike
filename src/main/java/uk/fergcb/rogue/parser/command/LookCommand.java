@@ -26,7 +26,7 @@ public class LookCommand extends Command {
         List<Entity> targets = actor.currentRoom.findEntity(targetName);
 
         if (targets.size() == 0)
-            return Interaction.fail("I can't see a " + Text.red(targetName) + ".");
+            return Interaction.fail(actor, "I can't see a " + Text.red(targetName) + ".");
 
         if (targets.size() == 1) {
             Entity target = targets.get(0);
@@ -38,7 +38,7 @@ public class LookCommand extends Command {
                 .map(Entity::getName)
                 .toList();
 
-        return Interaction.clarify(targetName, options);
+        return Interaction.clarify(actor, targetName, options);
     }
 
     @Override

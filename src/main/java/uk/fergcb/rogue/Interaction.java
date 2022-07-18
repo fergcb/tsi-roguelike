@@ -7,18 +7,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public record Interaction(InteractionType type, Actor actor, Entity target, String... args) {
-    public static Interaction fail (String msg) {
-        return new Interaction(InteractionType.FAIL, null, null, msg);
+    public static Interaction fail (Actor actor, String msg) {
+        return new Interaction(InteractionType.FAIL, actor, actor, msg);
     }
 
-    public static Interaction clarify(String givenText, List<String> possibleTexts) {
+    public static Interaction clarify(Actor actor, String givenText, List<String> possibleTexts) {
         String msg =
                 String.format("Which %s?\n", Text.red(givenText)) +
                 possibleTexts
                         .stream()
                         .map(txt -> "  " + txt)
                         .collect(Collectors.joining("\n"));
-        return new Interaction(InteractionType.CLARIFY, null, null, msg);
+        return new Interaction(InteractionType.CLARIFY, actor, actor, msg);
     }
 
     @Override

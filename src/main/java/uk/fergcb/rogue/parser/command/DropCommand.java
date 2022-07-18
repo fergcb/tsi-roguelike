@@ -25,7 +25,7 @@ public class DropCommand extends Command {
         List<Item> items = actor.inventory.searchFor(itemName);
 
         if (items.size() == 0)
-            return Interaction.fail("I don't have a " + Text.red(itemName) + ".");
+            return Interaction.fail(actor, "I don't have a " + Text.red(itemName) + ".");
 
         return new Interaction(InteractionType.DROP, actor, actor, itemName);
     }

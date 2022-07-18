@@ -19,7 +19,7 @@ public class SearchCommand extends Command {
 
     @Override
     protected Interaction resolve(String command, List<String> args, Actor actor) {
-        if (args.size() > 1) return Interaction.fail("I don't know how to " + Text.red(command));
+        if (args.size() > 1) return Interaction.fail(actor, "I don't know how to " + Text.red(command));
 
         if (args.size() == 0) {
             return new Interaction(InteractionType.LOOK, actor, actor);
@@ -29,7 +29,7 @@ public class SearchCommand extends Command {
         List<Entity> targets = actor.currentRoom.findEntity(targetName);
 
         if (targets.size() == 0)
-            return Interaction.fail("I can't see a " + Text.red(targetName) + " to search.");
+            return Interaction.fail(actor, "I can't see a " + Text.red(targetName) + " to search.");
 
         if (targets.size() == 1) {
             Entity target = targets.get(0);
@@ -41,7 +41,7 @@ public class SearchCommand extends Command {
                 .map(Entity::getName)
                 .toList();
 
-        return Interaction.clarify(targetName, options);
+        return Interaction.clarify(actor, targetName, options);
     }
 
     @Override

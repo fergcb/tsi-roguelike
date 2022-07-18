@@ -38,7 +38,7 @@ public class InputScanner {
             if (result.isPresent()) break;
         }
 
-        final Interaction fail = Interaction.fail("I don't know how to " + Text.red(line));
+        final Interaction fail = Interaction.fail(player, "I don't know how to " + Text.red(line));
 
         return result.orElse(fail);
     }

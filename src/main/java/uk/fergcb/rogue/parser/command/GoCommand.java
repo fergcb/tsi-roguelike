@@ -22,10 +22,10 @@ public class GoCommand extends Command {
 
     @Override
     protected Interaction resolve(String command, List<String> args, Actor actor) {
-        if (args.size() != 1) return Interaction.fail("I don't know how to " + Text.red(command));
+        if (args.size() != 1) return Interaction.fail(actor, "I don't know how to " + Text.red(command));
 
         String dir = args.get(0).toUpperCase(Locale.ROOT);
-        if (!validDirs.contains(dir)) return Interaction.fail(dir + " isn't a valid direction...");
+        if (!validDirs.contains(dir)) return Interaction.fail(actor, dir + " isn't a valid direction...");
 
         return new Interaction(InteractionType.GO, actor, actor, dir);
     }

@@ -25,18 +25,18 @@ public class TakeCommand extends Command {
         List<Entity> targets = actor.currentRoom.findEntity(targetName);
 
         if (targets.size() == 0)
-            return Interaction.fail("I can't see a " + Text.red(targetName) + " to take from.");
+            return Interaction.fail(actor, "I can't see a " + Text.red(targetName) + " to take from.");
 
         if (targets.size() == 1) {
             Entity target = targets.get(0);
             if (!(target instanceof Container container))
-                return Interaction.fail(target.getDefiniteName() + " has nothing for me to take.");
+                return Interaction.fail(actor, target.getDefiniteName() + " has nothing for me to take.");
 
             String itemName = Entity.stripArticle(args.get(0));
             List<Item> items = container.inventory.searchFor(itemName);
 
             if (items.size() == 0)
-                return Interaction.fail("I can't find a " + Text.red(itemName) + " in " + container.getDefiniteName());
+                return Interaction.fail(actor, "I can't find a " + Text.red(itemName) + " in " + container.getDefiniteName());
 
             return new Interaction(InteractionType.TAKE, actor, container, itemName);
         }
@@ -46,7 +46,7 @@ public class TakeCommand extends Command {
                 .map(Entity::getName)
                 .toList();
 
-        return Interaction.clarify(targetName, options);
+        return Interaction.clarify(actor, targetName, options);
     }
 
     @Override

@@ -43,7 +43,7 @@ public class PickUpCommand extends Command {
                     .filter(entry -> entry.getValue() != null)
                     .forEach(entry -> possibleItems.put(entry.getKey(), entry.getValue()));
 
-            if (possibleItems.size() == 0) return Interaction.fail("I can't see a " + Text.red(itemName) + ".");
+            if (possibleItems.size() == 0) return Interaction.fail(actor, "I can't see a " + Text.red(itemName) + ".");
 
             if (possibleItems.size() == 1) {
                 Map.Entry<Container, List<Item>> entry = possibleItems.entrySet()
@@ -66,7 +66,7 @@ public class PickUpCommand extends Command {
                     .map(entry -> String.format("%s from %s", entry.getValue().getDefiniteName(), entry.getKey().getDefiniteName()))
                     .toList();
 
-            return Interaction.clarify(itemName, options);
+            return Interaction.clarify(actor, itemName, options);
         }
 
         return new Interaction(InteractionType.PICK_UP, actor, actor, itemName);

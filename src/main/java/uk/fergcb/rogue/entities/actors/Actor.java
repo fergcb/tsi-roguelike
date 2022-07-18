@@ -34,13 +34,15 @@ public abstract class Actor extends Entity {
 
     @Override
     public boolean handleInteraction(Interaction action) {
+        Actor actor = action.actor();
+
         switch (action.type()) {
             case GO -> {
                 String dirString = action.args()[0];
                 Direction dir = Direction.valueOf(dirString);
 
                 if (!currentRoom.hasExit(dir)) {
-                    System.out.printf("There's no way %s from here.\n", Text.blue(dirString));
+                    actor.messagef("There's no way %s from here.", Text.blue(dirString));
                     return false;
                 }
 
@@ -52,7 +54,7 @@ public abstract class Actor extends Entity {
                 String itemName = action.args()[0];
                 List<Item> possibleItems = inventory.searchFor(itemName);
                 if (possibleItems.size() == 0) {
-                    System.out.printf("I don't have a %s.\n", Text.red(itemName));
+                    actor.messagef("I don't have a %s.", Text.red(itemName));
                     return false;
                 }
 
@@ -60,16 +62,16 @@ public abstract class Actor extends Entity {
                     Item item = possibleItems.get(0);
                     inventory.remove(item);
                     currentRoom.entities.add(item);
-                    if (action.actor() == action.target()) {
-                        System.out.println(
-                                Text.capitalize(action.actor().getDefiniteName())
-                                        + (action.actor() instanceof Player ? " drop " : " drops ")
+                    if (actor == action.target()) {
+                        actor.message(
+                                Text.capitalize(actor.getDefiniteName())
+                                        + (actor instanceof Player ? " drop " : " drops ")
                                         + item.getDefiniteName()
                         );
                     } else {
-                        System.out.println(
-                                Text.capitalize(action.actor().getDefiniteName())
-                                        + (action.actor() instanceof Player ? " remove " : " removes ")
+                        actor.message(
+                                Text.capitalize(actor.getDefiniteName())
+                                        + (actor instanceof Player ? " remove " : " removes ")
                                         + item.getDefiniteName()
                                         + " from "
                                         + action.target().getDefiniteName()
@@ -83,27 +85,27 @@ public abstract class Actor extends Entity {
                         .stream()
                         .map(item -> "  " + Text.capitalize(item.getDefiniteName()))
                         .collect(Collectors.joining("\n"));
-                System.out.println(msg);
+                actor.message(msg);
             }
             case PICK_UP -> {
                 String itemName = action.args()[0];
                 List<Entity> entities = currentRoom.findEntity(itemName);
                 if (entities.size() == 0) {
-                    System.out.printf("I can't see a %s.\n", Text.red(itemName));
+                    actor.messagef("I can't see a %s.", Text.red(itemName));
                     return false;
                 }
 
                 if (entities.size() == 1) {
                     Entity entity = entities.get(0);
                     if (!(entity instanceof Item item)) {
-                        System.out.printf("I can't pick %s up.\n", entity.getDefiniteName());
+                        actor.messagef("I can't pick %s up.", entity.getDefiniteName());
                         return false;
                     }
                     currentRoom.entities.remove(item);
                     inventory.add(item);
-                    System.out.println(
-                            Text.capitalize(action.actor().getDefiniteName())
-                                    + (action.actor() instanceof Player ? " pick up " : " picks up ")
+                    actor.message(
+                            Text.capitalize(actor.getDefiniteName())
+                                    + (actor instanceof Player ? " pick up " : " picks up ")
                                     + item.getDefiniteName()
                     );
                     return false;
@@ -114,7 +116,7 @@ public abstract class Actor extends Entity {
                         .stream()
                         .map(item -> "  " + Text.capitalize(item.getDefiniteName()))
                         .collect(Collectors.joining("\n"));
-                System.out.println(msg);
+                actor.message(msg);
             }
         }
 

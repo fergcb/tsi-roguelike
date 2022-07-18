@@ -67,7 +67,7 @@ public abstract class Entity {
             if (action.actor() == this) return true;
 
             String desc = action.target().describe();
-            System.out.println(Text.italic(Text.grey(desc)));
+            action.actor().message(Text.italic(Text.grey(desc)));
         }
 
         return false;
@@ -90,6 +90,12 @@ public abstract class Entity {
     protected void doPreTick() {}
     protected void doTick() {}
     protected void doPostTick() {}
+
+    public void message(String message) {}
+
+    public void messagef(String format, Object... args) {
+        message(String.format(format, args));
+    }
 
     public abstract String getName();
     public abstract String describe();

@@ -28,4 +28,8 @@ public class Player extends Actor {
     public String draw() {
         return Text.white("@");
     }
+
+    public void message(String message) {
+        System.out.println(message);
+    }
 }

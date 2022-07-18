@@ -4,12 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4fe50d8b-c0e5-4f38-9b12-ff34f384d4b1" name="Changes" comment="">
+    <list default="true" id="4fe50d8b-c0e5-4f38-9b12-ff34f384d4b1" name="Changes" comment="Organise Entity methods &amp; tick logic">
       <change afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/NewText.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/actors/Minotaur.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/actors/Minotaur.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/rooms/Room.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/map/rooms/Room.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/actors/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/uk/fergcb/rogue/entities/actors/Player.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -296,7 +295,14 @@
       <option name="project" value="LOCAL" />
       <updated>1658096441588</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Organise Entity methods &amp; tick logic">
+      <created>1658132501447</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1658132501447</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -335,7 +341,8 @@
     <MESSAGE value="Make all entities interactable" />
     <MESSAGE value="Add &quot;at&quot; clause to LOOK command" />
     <MESSAGE value="Announce entities moving into/out of player room" />
-    <option name="LAST_COMMIT_MESSAGE" value="Announce entities moving into/out of player room" />
+    <MESSAGE value="Organise Entity methods &amp; tick logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="Organise Entity methods &amp; tick logic" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

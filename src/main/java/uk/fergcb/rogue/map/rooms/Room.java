@@ -7,10 +7,8 @@ import uk.fergcb.rogue.entities.actors.Player;
 import uk.fergcb.rogue.map.Direction;
 
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.*;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -68,6 +66,15 @@ public abstract class Room {
                 .stream()
                 .filter(entity -> !leavingEntities.containsKey(entity))
                 .anyMatch(entity -> entity instanceof Player);
+    }
+
+    public Player getPlayer() {
+        return (Player)entities
+                .stream()
+                .filter(entity -> !leavingEntities.containsKey(entity))
+                .filter(entity -> entity instanceof Player)
+                .findFirst()
+                .orElseThrow();
     }
 
     public String drawContents(Actor actor) {
@@ -181,25 +188,27 @@ public abstract class Room {
         entities.forEach(Entity::postTick);
 
         if (hasPlayer()) {
+            Player player = getPlayer();
+
             arrivingEntities.keySet()
-                    .removeIf(entity -> entity instanceof Player);
+                    .removeIf(player::equals);
 
             if (!arrivingEntities.isEmpty()) {
-                arrivingEntities.forEach((entity, dir) -> System.out.printf(
+                arrivingEntities.forEach((entity, dir) -> player.messagef(
                         "%s enters from the %s.\n",
                         Text.capitalize(entity.getIndefiniteName()),
                         Text.blue(dir.name()))
                 );
-                System.out.println();
+                player.message("");
             }
 
             if (!leavingEntities.isEmpty()) {
-                leavingEntities.forEach((entity, dir) -> System.out.printf(
+                leavingEntities.forEach((entity, dir) -> player.messagef(
                         "%s leaves the room, heading %s.\n",
                         Text.capitalize(entity.getIndefiniteName()),
                         Text.blue(dir.name()))
                 );
-                System.out.println();
+                player.message("");
             }
         }
 

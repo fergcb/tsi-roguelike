@@ -36,7 +36,8 @@ public abstract class Container extends Entity {
             case SEARCH -> {
                 if (isLocked()) System.out.printf("The %s is locked.\n", getName());
                 else {
-                    printContents();
+                    String contents = getContents();
+                    action.actor().message(contents);
                     contentsIsKnown = true;
                 }
             }
@@ -51,7 +52,7 @@ public abstract class Container extends Entity {
                         Item item = possibleItems.get(0);
                         this.inventory.remove(item);
                         action.actor().inventory.add(item);
-                        System.out.println(
+                        action.actor().message(
                                 Text.capitalize(action.actor().getDefiniteName())
                                         + (action.actor() instanceof Player ? " take " : " takes ")
                                         + item.getDefiniteName()
@@ -65,7 +66,7 @@ public abstract class Container extends Entity {
                                 .stream()
                                 .map(item -> "  " + Text.capitalize(item.getDefiniteName()))
                                 .collect(Collectors.joining("\n"));
-                        System.out.println(msg);
+                        action.actor().message(msg);
                     }
                 }
             }
@@ -74,7 +75,7 @@ public abstract class Container extends Entity {
         return super.handleInteraction(action);
     }
 
-    protected void printContents() {
+    protected String getContents() {
         StringBuilder sb = new StringBuilder();
         sb.append(Text.capitalize(this.getDefiniteName()));
         int itemCount = inventory.size();
@@ -91,6 +92,6 @@ public abstract class Container extends Entity {
             sb.append(" is empty");
         }
         sb.append(".");
-        System.out.println(sb);
+        return sb.toString();
     }
 }

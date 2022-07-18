@@ -20,7 +20,8 @@ public class InputScanner {
             new PickUpCommand(),
             new SearchCommand(),
             new DropCommand(),
-            new LookCommand()
+            new LookCommand(),
+            new AttackCommand()
     );
 
     private final Scanner scanner = new Scanner(System.in);

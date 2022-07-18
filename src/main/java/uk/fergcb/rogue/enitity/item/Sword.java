@@ -2,7 +2,9 @@ package uk.fergcb.rogue.enitity.item;
 
 import uk.fergcb.rogue.Text;
 
-public class Sword extends Item {
+import java.util.Random;
+
+public class Sword extends Item implements Weapon {
     @Override
     public String getName() {
         return Text.cyan("SWORD");
@@ -19,5 +21,11 @@ public class Sword extends Item {
     @Override
     public String draw() {
         return Text.cyan("!");
+    }
+
+    @Override
+    public int getDamage() {
+        Random random = new Random();
+        return random.nextInt(1,6);
     }
 }

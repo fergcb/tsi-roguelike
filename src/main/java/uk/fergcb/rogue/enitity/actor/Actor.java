@@ -126,13 +126,15 @@ public abstract class Actor extends Entity {
                 String src = (String)action.args()[0];
                 int dmg = (int)action.args()[1];
                 hitPoints -= dmg;
-                target.messagef(
-                        "%s hit %s with %s for %d damage.",
+                String msg = String.format(
+                        "%s hit %s with %s %s.",
                         Text.capitalize(actor.getDefiniteName()),
                         target.getDefiniteName(),
                         src,
-                        dmg
+                        dmg == 0 ? "but it missed" : "for " + dmg + " damage"
                 );
+                actor.message(msg);
+                target.message(msg);
             }
         }
 

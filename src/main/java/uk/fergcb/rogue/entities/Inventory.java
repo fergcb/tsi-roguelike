@@ -1,4 +1,4 @@
-package uk.fergcb.rogue;
+package uk.fergcb.rogue.entities;
 
 import uk.fergcb.rogue.entities.items.Item;
 

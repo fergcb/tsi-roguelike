@@ -43,7 +43,7 @@ public abstract class Container extends Entity {
             case TAKE -> {
                 if (isLocked()) System.out.printf("The %s is locked.\n", getName());
                 else {
-                    String itemName = action.args()[0];
+                    String itemName = (String)action.args()[0];
                     List<Item> possibleItems = inventory.searchFor(itemName);
                     if (possibleItems.size() == 0) {
                         System.out.printf("%s doesn't contain %s.\n", Text.capitalize(getDefiniteName()), Text.red(itemName));

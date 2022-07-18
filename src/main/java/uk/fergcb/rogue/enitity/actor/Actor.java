@@ -38,7 +38,7 @@ public abstract class Actor extends Entity {
 
         switch (action.type()) {
             case GO -> {
-                String dirString = action.args()[0];
+                String dirString = (String)action.args()[0];
                 Direction dir = Direction.valueOf(dirString);
 
                 if (!currentRoom.hasExit(dir)) {
@@ -51,7 +51,7 @@ public abstract class Actor extends Entity {
                 return true;
             }
             case DROP -> {
-                String itemName = action.args()[0];
+                String itemName = (String)action.args()[0];
                 List<Item> possibleItems = inventory.searchFor(itemName);
                 if (possibleItems.size() == 0) {
                     actor.messagef("I don't have a %s.", Text.red(itemName));
@@ -88,7 +88,7 @@ public abstract class Actor extends Entity {
                 actor.message(msg);
             }
             case PICK_UP -> {
-                String itemName = action.args()[0];
+                String itemName = (String)action.args()[0];
                 List<Entity> entities = currentRoom.findEntity(itemName);
                 if (entities.size() == 0) {
                     actor.messagef("I can't see a %s.", Text.red(itemName));

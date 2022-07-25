@@ -10,6 +10,8 @@ public enum PotionColor {
     PURPLE(Text::magenta),
     YELLOW(Text::yellow);
 
+    private static final Random random = new Random();
+
     public final Function<String, String> colorize;
 
     PotionColor (Function<String, String> colorize) {
@@ -17,7 +19,6 @@ public enum PotionColor {
     }
 
     public static PotionColor random() {
-        Random random = new Random();
         return PotionColor.values()[random.nextInt(PotionColor.values().length)];
     }
 }

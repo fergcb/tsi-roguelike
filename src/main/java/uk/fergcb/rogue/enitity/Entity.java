@@ -5,14 +5,13 @@ import uk.fergcb.rogue.InteractionType;
 import uk.fergcb.rogue.Text;
 import uk.fergcb.rogue.map.room.Room;
 
-import java.util.AbstractMap;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public abstract class Entity {
+
+    protected static final Random random = new Random();
 
     public Room currentRoom = null;
     private boolean hasTicked = false;

@@ -9,8 +9,9 @@ public enum GemQuality {
     BRILLIANT,
     SPARKLING;
 
+    private static final Random random = new Random();
+
     public static GemQuality random() {
-        Random random = new Random();
         return GemQuality.values()[random.nextInt(GemQuality.values().length)];
     }
 }

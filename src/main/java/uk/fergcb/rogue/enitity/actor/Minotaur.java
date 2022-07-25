@@ -7,8 +7,6 @@ import uk.fergcb.rogue.map.Direction;
 import uk.fergcb.rogue.map.room.ShrineRoom;
 
 import java.util.List;
-import java.util.Random;
-
 public class Minotaur extends Actor {
 
     public Minotaur() {
@@ -36,7 +34,6 @@ public class Minotaur extends Actor {
 
     @Override
     public void doTick() {
-        Random random = new Random();
         Interaction action;
 
         if (currentRoom.hasPlayer()) {

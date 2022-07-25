@@ -12,6 +12,8 @@ public enum GemType {
     RUBY(Text::red),
     SAPPHIRE(Text::blue);
 
+    private static final Random random = new Random();
+
     public final Function<String, String> colorize;
 
     GemType(Function<String, String> colorize) {
@@ -19,7 +21,6 @@ public enum GemType {
     }
 
     public static GemType random() {
-        Random random = new Random();
         return GemType.values()[random.nextInt(GemType.values().length)];
     }
 }
